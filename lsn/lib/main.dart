@@ -33,6 +33,7 @@ class MainScreen extends StatefulWidget {
   }
 }
 
+
 class MainState extends State<MainScreen> {
   Widget screen;
   final GlobalKey _scaffoldKey = GlobalKey();
@@ -48,7 +49,7 @@ class MainState extends State<MainScreen> {
     super.initState();
 
     /// Config local
-    _configLocal();
+//    _configLocal();
   }
 
   void _configLocal() {

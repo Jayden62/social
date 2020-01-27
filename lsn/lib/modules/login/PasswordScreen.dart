@@ -9,6 +9,13 @@ import 'package:lsn/component/LogoComponent.dart';
 class PasswordScreen extends BaseScreen {
   var passwordController = TextEditingController();
   bool isEnable = false;
+  String text;
+
+  @override
+  void initState() {
+    super.initState();
+    text = widget.arguments;
+  }
 
   @override
   void dispose() {
@@ -48,11 +55,19 @@ class PasswordScreen extends BaseScreen {
                   top: margin40, left: margin20, right: margin20),
               enable: isEnable,
               onPress: () {
-                pushScreen(
-                    context,
-                    BaseWidget(
-                      screen: Screens.ADDITIONAL,
-                    ));
+                if (text == 'login') {
+                  pushScreen(
+                      context,
+                      BaseWidget(
+                        screen: Screens.HOME,
+                      ));
+                } else {
+                  pushScreen(
+                      context,
+                      BaseWidget(
+                        screen: Screens.ADDITIONAL,
+                      ));
+                }
               },
             ),
           ],

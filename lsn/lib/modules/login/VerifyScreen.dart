@@ -37,7 +37,7 @@ class VerifyScreen extends BaseScreen {
 
   Widget _photoVerify() {
     return Image.asset('assets/images/verify.png',
-        height: MediaQuery.of(context).size.height / 3, fit: BoxFit.fitHeight);
+        height: height200, fit: BoxFit.fitHeight);
   }
 
   Widget _pinCode() {
@@ -81,6 +81,7 @@ class VerifyScreen extends BaseScreen {
                     context,
                     BaseWidget(
                       screen: Screens.PASSWORD,
+                      arguments: 'additional',
                     ));
               },
             ),

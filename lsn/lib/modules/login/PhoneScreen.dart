@@ -60,6 +60,7 @@ class PhoneScreen extends BaseScreen {
                   context,
                   BaseWidget(
                     screen: Screens.PASSWORD,
+                    arguments: 'login',
                   ));
             },
           ),
@@ -104,7 +105,7 @@ class PhoneScreen extends BaseScreen {
           margin: EdgeInsets.only(right: margin20, top: margin20),
           alignment: Alignment.centerRight,
           child: Text(
-            'Newbie',
+            'New member',
             style: TextStyle(
                 color: Colors.red[600], decoration: TextDecoration.underline),
           ),
