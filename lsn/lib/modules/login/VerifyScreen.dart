@@ -42,16 +42,17 @@ class VerifyScreen extends BaseScreen {
 
   Widget _pinCode() {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+        padding:
+            EdgeInsets.symmetric(vertical: padding8, horizontal: padding20),
         child: PinCodeTextField(
           length: 4,
           obsecureText: false,
           animationType: AnimationType.fade,
           shape: PinCodeFieldShape.underline,
           animationDuration: Duration(milliseconds: 300),
-          borderRadius: BorderRadius.circular(5),
-          fieldHeight: 50,
-          fieldWidth: 40,
+          borderRadius: BorderRadius.circular(radius5),
+          fieldHeight: height50,
+          fieldWidth: width40,
           onChanged: (value) {
 //                setState(() {
 //                  currentText = value;
@@ -79,7 +80,7 @@ class VerifyScreen extends BaseScreen {
                 pushScreen(
                     context,
                     BaseWidget(
-                      screen: Screens.ADDITIONAL,
+                      screen: Screens.PASSWORD,
                     ));
               },
             ),

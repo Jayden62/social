@@ -95,6 +95,7 @@ class AdditionalScreen extends BaseScreen {
   Widget _posItem(String text, {Function(String text) callback}) {
     return InkWell(
         onTap: () {
+          popScreen(context);
           callback(text);
         },
         child: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
+import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
@@ -47,11 +48,11 @@ class PasswordScreen extends BaseScreen {
                   top: margin40, left: margin20, right: margin20),
               enable: isEnable,
               onPress: () {
-//            pushScreen(
-//                context,
-//                BaseWidget(
-//                  screen: Screens.PASSWORD,
-//                ));
+                pushScreen(
+                    context,
+                    BaseWidget(
+                      screen: Screens.ADDITIONAL,
+                    ));
               },
             ),
           ],

@@ -15,6 +15,7 @@ var width4 = 4.0;
 var width5 = 5.0;
 var width18 = 18.0;
 var width20 = 20.0;
+var width40 = 40.0;
 var topHeight = 150.0;
 var iconAppbarSize = 24.0;
 var headerHeight = 50.0;
