@@ -49,7 +49,7 @@ var height20 = 20.0;
 var height80 = 80.0;
 var height70 = 70.0;
 var height200 = 200.0;
-var heightMonthDialog = 300.0;
+var height300 = 300.0;
 
 /// Width
 var width80 = 80.0;
@@ -90,9 +90,10 @@ var appBarColor = Colors.grey[100];
 var paymentColor = Colors.lightBlueAccent;
 var darkGrayColor = Color(0xffC4C4C4);
 var primaryColor = Color.fromARGB(255, 0, 120, 226);
-var loginFillColor = Color.fromARGB(255, 246, 247, 249);
+var desColor = Color.fromARGB(255, 246, 247, 249);
 var backgroundStaffDetail = Color.fromARGB(255, 225, 246, 255);
 var greyColor = Colors.grey[400];
+
 /// Font size
 var font8 = 8.0;
 var font10 = 10.0;
@@ -181,6 +182,7 @@ var defaultBox = OutlineInputBorder(
 
 var focusBox = OutlineInputBorder(
     borderSide: BorderSide(color: Colors.grey, width: widthAHalf));
+var paddingBox = EdgeInsets.only(left: padding10, top: padding3);
 
 var searchHintStyle = TextStyle(fontSize: font14, color: Colors.grey);
 

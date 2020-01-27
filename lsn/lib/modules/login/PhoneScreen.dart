@@ -69,6 +69,7 @@ class PhoneScreen extends BaseScreen {
 
           /// InputSelectComponent
           InputSelectComponent(
+            label: 'Select language',
             textEditingController: languageController,
             onSelect: () {
               if (!isShowed) {
@@ -96,7 +97,7 @@ class PhoneScreen extends BaseScreen {
           pushScreen(
               context,
               BaseWidget(
-                screen: Screens.NEWBIE,
+                screen: Screens.VERIFY,
               ));
         },
         child: Container(

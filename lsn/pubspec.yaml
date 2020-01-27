@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   home_indicator: ^1.1.5
   pin_code_fields: ^2.3.0+3
+  flutter_local_notifications: ^1.1.3
 
   flutter_localizations:
     sdk: flutter
@@ -50,6 +51,8 @@ flutter:
     - assets/images/usa_flag.png
     - assets/images/vietnam_flag.png
     - assets/images/verify.png
+
+    - assets/files/country.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

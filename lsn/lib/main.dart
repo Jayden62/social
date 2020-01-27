@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/gestures.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:home_indicator/home_indicator.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/util/LocalizationsDelegateUtil.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +36,7 @@ class MainScreen extends StatefulWidget {
 class MainState extends State<MainScreen> {
   Widget screen;
   final GlobalKey _scaffoldKey = GlobalKey();
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   @override
   void dispose() {
@@ -47,6 +46,51 @@ class MainState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
+    /// Config local
+    _configLocal();
+  }
+
+  void _configLocal() {
+    var initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    var initializationSettings = InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+//    await Navigator.push(
+//      context,
+//      new MaterialPageRoute(builder: (context) => new SecondScreen(payload)),
+//    );
+  }
+
+  Future<void> onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    print('onDidReceiveLocalNotification');
+
+    // display a dialog with the notification details, tap ok to go to another page
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: title != null ? Text(title) : null,
+        content: body != null ? Text(body) : null,
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: Text('Ok'),
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -71,7 +115,7 @@ class MainState extends State<MainScreen> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           key: _scaffoldKey,
-            body: BaseWidget(screen: Screens.PHONE),
+          body: BaseWidget(screen: Screens.PHONE),
         ));
   }
 }
