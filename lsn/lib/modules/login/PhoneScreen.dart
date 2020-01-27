@@ -9,6 +9,7 @@ import 'package:lsn/middle/model/LanguageRequest.dart';
 
 class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
+  var passwordController = TextEditingController();
   var languageController = TextEditingController();
   bool isShowed = false;
 
@@ -22,6 +23,7 @@ class PhoneScreen extends BaseScreen {
   void dispose() {
     super.dispose();
     phoneController.dispose();
+    passwordController.dispose();
     languageController.dispose();
   }
 
@@ -40,7 +42,7 @@ class PhoneScreen extends BaseScreen {
 
   Widget _views() {
     return Expanded(
-      child: ListView(
+      child: Column(
         children: <Widget>[
           /// Phone number
           _phoneNumber(),
@@ -51,6 +53,9 @@ class PhoneScreen extends BaseScreen {
               width: width150,
               margin: EdgeInsets.only(
                   top: margin40, left: margin20, right: margin20)),
+
+          /// Register
+          _register(),
 
           /// InputSelectComponent
           InputSelectComponent(
@@ -71,6 +76,18 @@ class PhoneScreen extends BaseScreen {
           /// Show language
           _showLanguage(),
         ],
+      ),
+    );
+  }
+
+  Widget _register() {
+    return Container(
+      margin: EdgeInsets.only(right: margin20, top: margin20),
+      alignment: Alignment.centerRight,
+      child: Text(
+        'Register',
+        style: TextStyle(
+            color: Colors.red[600], decoration: TextDecoration.underline),
       ),
     );
   }
