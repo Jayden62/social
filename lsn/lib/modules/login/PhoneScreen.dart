@@ -4,14 +4,25 @@ import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/component/InputSelectComponent.dart';
 import 'package:lsn/component/LogoComponent.dart';
+import 'package:lsn/items/LanguageItem.dart';
+import 'package:lsn/middle/model/LanguageRequest.dart';
 
 class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
+  var languageController = TextEditingController();
+  bool isShowed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    languageController.text = 'English';
+  }
 
   @override
   void dispose() {
     super.dispose();
     phoneController.dispose();
+    languageController.dispose();
   }
 
   @override
@@ -21,20 +32,72 @@ class PhoneScreen extends BaseScreen {
         /// LogoComponent
         LogoComponent(),
 
-        /// Phone number
-        _phoneNumber(),
-
-        /// CommonButtonComponent
-        CommonButtonComponent(
-            text: 'Next',
-            width: width150,
-            margin: EdgeInsets.only(
-                top: margin40, left: margin20, right: margin20)),
-
-        /// InputSelectComponent
-        InputSelectComponent(),
+        /// Views
+        _views(),
       ],
     );
+  }
+
+  Widget _views() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          /// Phone number
+          _phoneNumber(),
+
+          /// CommonButtonComponent
+          CommonButtonComponent(
+              text: 'Next',
+              width: width150,
+              margin: EdgeInsets.only(
+                  top: margin40, left: margin20, right: margin20)),
+
+          /// InputSelectComponent
+          InputSelectComponent(
+            textEditingController: languageController,
+            onSelect: () {
+              if (!isShowed) {
+                setState(() {
+                  isShowed = true;
+                });
+              } else {
+                setState(() {
+                  isShowed = false;
+                });
+              }
+            },
+          ),
+
+          /// Show language
+          _showLanguage(),
+        ],
+      ),
+    );
+  }
+
+  Widget _showLanguage() {
+    Widget view;
+    if (!isShowed) {
+      view = Container();
+    } else {
+      view = Container(
+          height: height200,
+          child: ListView(
+            children: <Widget>[
+              LanguageItem(LanguageRequest(
+                  countryName: 'English',
+                  countryCode: 'en',
+                  flag: 'assets/images/usa_flag.png',
+                  postCode: '+1191')),
+              LanguageItem(LanguageRequest(
+                  countryName: 'Vietnamese',
+                  countryCode: 'vi',
+                  flag: 'assets/images/vietnam_flag.png',
+                  postCode: '+841')),
+            ],
+          ));
+    }
+    return view;
   }
 
   Widget _phoneNumber() {

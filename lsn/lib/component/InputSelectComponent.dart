@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
 class InputSelectComponent extends StatefulWidget {
-  final String label;
   final TextEditingController textEditingController;
   final Function onSelect;
 
-  InputSelectComponent({this.label, this.textEditingController, this.onSelect});
+  InputSelectComponent({this.textEditingController, this.onSelect});
 
   @override
   State<StatefulWidget> createState() {
@@ -21,9 +20,13 @@ class _InputSelectComponentState extends State<InputSelectComponent> {
         onTap: () {
           widget.onSelect();
         },
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         child: Container(
             margin:
                 EdgeInsets.only(top: margin20, left: margin20, right: margin20),
+            decoration: BoxDecoration(
+                border: Border.all(width: widthAHalf, color: Colors.grey)),
             child: Row(
               children: <Widget>[
                 /// Value
@@ -31,19 +34,26 @@ class _InputSelectComponentState extends State<InputSelectComponent> {
                     child: Container(
                         height: boxHeight,
                         color: whiteColor,
+                        margin: EdgeInsets.only(
+                          left: margin10,
+                        ),
                         child: TextField(
+                          style:
+                              TextStyle(fontSize: font14, color: Colors.grey),
                           enabled: false,
                           controller: widget.textEditingController,
-                          decoration: InputDecoration(
-                            border: defaultBox,
-                            enabledBorder: defaultBox,
-                            focusedBorder: focusBox,
-                            contentPadding: paddingBox,
-                          ),
+                          decoration: InputDecoration(border: InputBorder.none),
                         ))),
 
-                /// Dropdown
-                Container(child: Icon(Icons.arrow_drop_down)),
+                /// Drop down
+                Container(
+                    margin: EdgeInsets.only(
+                      right: margin5,
+                    ),
+                    child: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.grey,
+                    )),
               ],
             )));
   }

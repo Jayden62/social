@@ -5,24 +5,30 @@ import 'package:lsn/middle/model/LanguageRequest.dart';
 
 class LanguageItem extends BaseItem {
   final LanguageRequest item;
+  final Function(LanguageRequest item) callback;
 
-  LanguageItem(this.item);
+  LanguageItem(this.item, {this.callback});
 
   @override
   Widget onInitItem(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(padding10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          /// Country name
-          Text(item.countryName),
+    return InkWell(
+        onTap: () {
+          callback(item);
+        },
+        child: Container(
+          padding: EdgeInsets.all(padding20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              /// Country name
+              Expanded(child: Text(item.countryName)),
 
-          /// Flag
-          Container(
-              child: Image.asset(item.flag, height: height18, width: width18)),
-        ],
-      ),
-    );
+              /// Flag
+              Container(
+                  child:
+                      Image.asset(item.flag, height: height20, width: width20)),
+            ],
+          ),
+        ));
   }
 }

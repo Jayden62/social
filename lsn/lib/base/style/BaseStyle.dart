@@ -14,6 +14,7 @@ var width3 = 3.0;
 var width4 = 4.0;
 var width5 = 5.0;
 var width18 = 18.0;
+var width20 = 20.0;
 var topHeight = 150.0;
 var iconAppbarSize = 24.0;
 var headerHeight = 50.0;
@@ -23,7 +24,7 @@ var size24 = 24.0;
 var size20 = 20.0;
 var size18 = 18.0;
 var size16 = 16.0;
-var boxHeight = 40.0;
+var boxHeight = 45.0;
 var avatarSize = 100.0;
 var avatarMenu = 60.0;
 var size60 = 60.0;
@@ -44,6 +45,7 @@ var height30 = 30.0;
 var height35 = 35.0;
 var height10 = 10.0;
 var height18 = 18.0;
+var height20 = 20.0;
 var height80 = 80.0;
 var height70 = 70.0;
 var height200 = 200.0;
@@ -174,7 +176,6 @@ var confirmHighlightDialogStyle = TextStyle(color: grayColor);
 var confirmDefaultDialogDecoration = BoxDecoration(
     color: primaryColor,
     borderRadius: BorderRadius.all(Radius.circular(radius8)));
-var paddingBox = EdgeInsets.only(left: padding10, top: padding3);
 var defaultBox = OutlineInputBorder(
     borderSide: BorderSide(color: Colors.grey, width: widthAHalf));
 
