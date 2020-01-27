@@ -92,7 +92,7 @@ var darkGrayColor = Color(0xffC4C4C4);
 var primaryColor = Color.fromARGB(255, 0, 120, 226);
 var loginFillColor = Color.fromARGB(255, 246, 247, 249);
 var backgroundStaffDetail = Color.fromARGB(255, 225, 246, 255);
-
+var greyColor = Colors.grey[400];
 /// Font size
 var font8 = 8.0;
 var font10 = 10.0;

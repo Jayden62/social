@@ -26,7 +26,7 @@ class _InputSelectComponentState extends State<InputSelectComponent> {
             margin:
                 EdgeInsets.only(top: margin20, left: margin20, right: margin20),
             decoration: BoxDecoration(
-                border: Border.all(width: widthAHalf, color: Colors.grey)),
+                border: Border.all(width: widthAHalf, color: greyColor)),
             child: Row(
               children: <Widget>[
                 /// Value
@@ -39,7 +39,7 @@ class _InputSelectComponentState extends State<InputSelectComponent> {
                         ),
                         child: TextField(
                           style:
-                              TextStyle(fontSize: font14, color: Colors.grey),
+                              TextStyle(fontSize: font14, color: greyColor),
                           enabled: false,
                           controller: widget.textEditingController,
                           decoration: InputDecoration(border: InputBorder.none),
@@ -52,7 +52,7 @@ class _InputSelectComponentState extends State<InputSelectComponent> {
                     ),
                     child: Icon(
                       Icons.arrow_drop_down,
-                      color: Colors.grey,
+                      color: greyColor,
                     )),
               ],
             )));

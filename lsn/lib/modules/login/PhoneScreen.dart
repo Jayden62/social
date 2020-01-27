@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
+import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/component/InputSelectComponent.dart';
@@ -9,9 +10,9 @@ import 'package:lsn/middle/model/LanguageRequest.dart';
 
 class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
-  var passwordController = TextEditingController();
   var languageController = TextEditingController();
   bool isShowed = false;
+  bool isEnable = false;
 
   @override
   void initState() {
@@ -23,7 +24,6 @@ class PhoneScreen extends BaseScreen {
   void dispose() {
     super.dispose();
     phoneController.dispose();
-    passwordController.dispose();
     languageController.dispose();
   }
 
@@ -42,6 +42,7 @@ class PhoneScreen extends BaseScreen {
 
   Widget _views() {
     return Expanded(
+        child: SingleChildScrollView(
       child: Column(
         children: <Widget>[
           /// Phone number
@@ -49,13 +50,22 @@ class PhoneScreen extends BaseScreen {
 
           /// CommonButtonComponent
           CommonButtonComponent(
-              text: 'Next',
-              width: width150,
-              margin: EdgeInsets.only(
-                  top: margin40, left: margin20, right: margin20)),
+            text: 'Next',
+            width: width150,
+            margin:
+                EdgeInsets.only(top: margin40, left: margin20, right: margin20),
+            enable: isEnable,
+            onPress: () {
+              pushScreen(
+                  context,
+                  BaseWidget(
+                    screen: Screens.PASSWORD,
+                  ));
+            },
+          ),
 
           /// Register
-          _register(),
+          _newbie(),
 
           /// InputSelectComponent
           InputSelectComponent(
@@ -77,15 +87,15 @@ class PhoneScreen extends BaseScreen {
           _showLanguage(),
         ],
       ),
-    );
+    ));
   }
 
-  Widget _register() {
+  Widget _newbie() {
     return Container(
       margin: EdgeInsets.only(right: margin20, top: margin20),
       alignment: Alignment.centerRight,
       child: Text(
-        'Register',
+        'Newbie',
         style: TextStyle(
             color: Colors.red[600], decoration: TextDecoration.underline),
       ),
@@ -123,9 +133,20 @@ class PhoneScreen extends BaseScreen {
         child: TextField(
             keyboardType: TextInputType.phone,
             controller: phoneController,
+            onChanged: (String text) {
+              if (text.isEmpty) {
+                setState(() {
+                  isEnable = false;
+                });
+              } else {
+                setState(() {
+                  isEnable = true;
+                });
+              }
+            },
             decoration: InputDecoration(
                 labelText: "Phone number",
-                labelStyle: TextStyle(fontSize: font14, color: Colors.grey),
+                labelStyle: TextStyle(fontSize: font14, color: greyColor),
                 border: phoneBorder,
                 focusedBorder: phoneBorder)));
   }
