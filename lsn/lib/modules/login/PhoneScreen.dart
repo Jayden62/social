@@ -91,15 +91,23 @@ class PhoneScreen extends BaseScreen {
   }
 
   Widget _newbie() {
-    return Container(
-      margin: EdgeInsets.only(right: margin20, top: margin20),
-      alignment: Alignment.centerRight,
-      child: Text(
-        'Newbie',
-        style: TextStyle(
-            color: Colors.red[600], decoration: TextDecoration.underline),
-      ),
-    );
+    return InkWell(
+        onTap: () {
+          pushScreen(
+              context,
+              BaseWidget(
+                screen: Screens.NEWBIE,
+              ));
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: margin20, top: margin20),
+          alignment: Alignment.centerRight,
+          child: Text(
+            'Newbie',
+            style: TextStyle(
+                color: Colors.red[600], decoration: TextDecoration.underline),
+          ),
+        ));
   }
 
   Widget _showLanguage() {

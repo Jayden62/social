@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
+import 'package:lsn/modules/login/NewbieScreen.dart';
 import 'package:lsn/modules/login/PasswordScreen.dart';
 import 'package:lsn/modules/login/PhoneScreen.dart';
 
@@ -11,6 +12,9 @@ class Screens {
   /// Password screen
   static const String PASSWORD = 'password';
 
+  /// Newbie screen
+  static const String NEWBIE = 'newbie';
+
   /// Init screen
   State<BaseWidget> initScreen({@required String screen}) {
     State<BaseWidget> state;
@@ -20,6 +24,9 @@ class Screens {
         break;
       case PASSWORD:
         state = PasswordScreen();
+        break;
+      case NEWBIE:
+        state = NewbieScreen();
         break;
     }
     return state;

@@ -1,18 +1,23 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:home_indicator/home_indicator.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/util/LocalizationsDelegateUtil.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Disable bottom bar line on Iphone X
-//  if (Platform.isIOS) {
-//    await HomeIndicator.hide();
-//  }
+  if (Platform.isIOS) {
+    await HomeIndicator.hide();
+  }
 
   /// Only set portrait orientation for device.
   SystemChrome.setPreferredOrientations(
@@ -65,9 +70,8 @@ class MainState extends State<MainScreen> {
         ),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            key: _scaffoldKey,
-            body: BaseWidget(
-              screen: Screens.PHONE,
-            )));
+          key: _scaffoldKey,
+            body: BaseWidget(screen: Screens.PHONE),
+        ));
   }
 }
