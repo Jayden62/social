@@ -19,7 +19,7 @@ class PhoneScreen extends BaseScreen {
   void initState() {
     super.initState();
     languageController.text = 'English';
-    mapLanguage['isShow'] = false;
+    mapLanguage['isShowed'] = false;
   }
 
   @override
@@ -75,13 +75,13 @@ class PhoneScreen extends BaseScreen {
             label: 'Select language',
             textEditingController: languageController,
             onSelect: () {
-              if (!mapLanguage['isShow']) {
+              if (!mapLanguage['isShowed']) {
                 setState(() {
-                  mapLanguage['isShow'] = true;
+                  mapLanguage['isShowed'] = true;
                 });
               } else {
                 setState(() {
-                  mapLanguage['isShow'] = false;
+                  mapLanguage['isShowed'] = false;
                 });
               }
             },
@@ -116,7 +116,7 @@ class PhoneScreen extends BaseScreen {
 
   Widget _showLanguage() {
     Widget view;
-    if (!mapLanguage['isShow']) {
+    if (!mapLanguage['isShowed']) {
       view = Container();
     } else {
       view = Container(

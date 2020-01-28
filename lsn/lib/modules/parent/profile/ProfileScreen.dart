@@ -64,7 +64,7 @@ class ProfileScreen extends BaseScreen {
                     padding: EdgeInsets.all(padding10),
                     alignment: Alignment.center,
                     child: Text(
-                      'Show infomation',
+                      'Hide infomation',
                       style: TextStyle(color: whiteColor, fontSize: font16),
                     ))),
             header: Flexible(

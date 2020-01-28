@@ -10,11 +10,13 @@ class PasswordScreen extends BaseScreen {
   var passwordController = TextEditingController();
   bool isEnable = false;
   String text;
+  Map<String, bool> mapPassword = Map();
 
   @override
   void initState() {
     super.initState();
     text = widget.arguments;
+    mapPassword['isShowed'] = false;
   }
 
   @override
@@ -81,6 +83,7 @@ class PasswordScreen extends BaseScreen {
         margin: EdgeInsets.only(top: margin20, left: margin20, right: margin20),
         child: TextField(
             controller: passwordController,
+            obscureText: _showObscureText(),
             onChanged: (String text) {
               if (text.isEmpty) {
                 setState(() {
@@ -94,12 +97,38 @@ class PasswordScreen extends BaseScreen {
             },
             decoration: InputDecoration(
                 labelText: "Pass word",
-                suffixIcon: Container(
-                    child: Icon(Icons.visibility_off,
-                        size: size18, color: primaryColor)),
+                suffixIcon: InkWell(
+                    onTap: () {
+                      if (!mapPassword['isShowed']) {
+                        setState(() {
+                          mapPassword['isShowed'] = true;
+                        });
+                      } else {
+                        setState(() {
+                          mapPassword['isShowed'] = false;
+                        });
+                      }
+                    },
+                    child: _showVisibility()),
                 labelStyle: TextStyle(fontSize: font14, color: greyColor),
                 border: phoneBorder,
                 focusedBorder: phoneBorder)));
+  }
+
+  bool _showObscureText() {
+    if (!mapPassword['isShowed']) return true;
+
+    return false;
+  }
+
+  Widget _showVisibility() {
+    Widget view;
+    if (!mapPassword['isShowed']) {
+      view = Icon(Icons.visibility_off, size: size18, color: primaryColor);
+    } else {
+      view = Icon(Icons.visibility, size: size18, color: primaryColor);
+    }
+    return view;
   }
 
   @override
