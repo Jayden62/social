@@ -116,6 +116,7 @@ var radius20 = 20.0;
 var radius18 = 18.0;
 var radius25 = 25.0;
 var radius30 = 30.0;
+var radius50 = 50.0;
 
 /// Border width
 double one = 1.0;

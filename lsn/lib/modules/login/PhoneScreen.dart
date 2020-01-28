@@ -11,13 +11,15 @@ import 'package:lsn/middle/model/LanguageRequest.dart';
 class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
   var languageController = TextEditingController();
-  bool isShowed = false;
+  Map<String, bool> mapLanguage = Map();
+
   bool isEnable = false;
 
   @override
   void initState() {
     super.initState();
     languageController.text = 'English';
+    mapLanguage['isShow'] = false;
   }
 
   @override
@@ -73,13 +75,13 @@ class PhoneScreen extends BaseScreen {
             label: 'Select language',
             textEditingController: languageController,
             onSelect: () {
-              if (!isShowed) {
+              if (!mapLanguage['isShow']) {
                 setState(() {
-                  isShowed = true;
+                  mapLanguage['isShow'] = true;
                 });
               } else {
                 setState(() {
-                  isShowed = false;
+                  mapLanguage['isShow'] = false;
                 });
               }
             },
@@ -114,7 +116,7 @@ class PhoneScreen extends BaseScreen {
 
   Widget _showLanguage() {
     Widget view;
-    if (!isShowed) {
+    if (!mapLanguage['isShow']) {
       view = Container();
     } else {
       view = Container(

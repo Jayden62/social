@@ -16,19 +16,22 @@ class LanguageItem extends BaseItem {
           callback(item);
         },
         child: Container(
-          padding: EdgeInsets.all(padding20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              /// Country name
-              Expanded(child: Text(item.countryName)),
+            padding: EdgeInsets.all(padding20),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    /// Country name
+                    Expanded(child: Text(item.countryName)),
 
-              /// Flag
-              Container(
-                  child:
-                      Image.asset(item.flag, height: height20, width: width20)),
-            ],
-          ),
-        ));
+                    /// Flag
+                    Container(
+                        child: Image.asset(item.flag,
+                            height: height20, width: width20)),
+                  ],
+                ),
+              ],
+            )));
   }
 }
