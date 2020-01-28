@@ -31,7 +31,10 @@ class DialogUtil {
                         height: height80,
                       ),
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: Colors.teal[200]),
+                      decoration: BoxDecoration(
+                          color: Colors.teal[200],
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(radius5))),
                       child: Container(
                           padding: EdgeInsets.all(padding10),
                           child: Image.asset('assets/images/logo.png'))),

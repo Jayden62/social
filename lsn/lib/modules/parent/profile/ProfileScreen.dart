@@ -8,32 +8,6 @@ import 'package:lsn/component/ProfileComponent.dart';
 import 'package:lsn/util/DialogUtil.dart';
 
 class ProfileScreen extends BaseScreen {
-  var nameController = TextEditingController();
-  var phoneController = TextEditingController();
-  var dobController = TextEditingController();
-  var posController = TextEditingController();
-  var countryController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    nameController.text = 'Jack Le';
-    phoneController.text = '093 693 xxxx';
-    dobController.text = '1997/02/06';
-    posController.text = 'Mobile developer';
-    countryController.text = 'Viet Nam Country';
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    nameController.dispose();
-    phoneController.dispose();
-    dobController.dispose();
-    posController.dispose();
-    countryController.dispose();
-  }
-
   @override
   Widget onInitBody(BuildContext context) {
     return Column(
@@ -44,9 +18,6 @@ class ProfileScreen extends BaseScreen {
         /// Base info
         _baseInfo(),
 
-        /// Line
-        Divider(color: greyColor, height: 1.0),
-
         /// Features
         _features(),
       ],
@@ -55,28 +26,30 @@ class ProfileScreen extends BaseScreen {
 
   Widget _features() {
     return Expanded(
-      child: ListView(
-        children: <Widget>[
-          /// View all posts
-          FeatureComponent(
-            text: 'View posts',
-            onTap: () {
-              pushScreen(
-                  context,
-                  BaseWidget(
-                    screen: Screens.VIEW_POST,
-                  ));
-            },
-          ),
+        child: ListView(
+      children: <Widget>[
+        /// Line
+        Divider(color: greyColor, height: 1.0),
 
-          /// New features
-          FeatureComponent(
-            text: 'News features',
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
+        /// View all posts
+        FeatureComponent(
+          text: 'View posts',
+          onTap: () {
+            pushScreen(
+                context,
+                BaseWidget(
+                  screen: Screens.VIEW_POST,
+                ));
+          },
+        ),
+
+        /// New features
+        FeatureComponent(
+          text: 'News features',
+          onTap: () {},
+        ),
+      ],
+    ));
   }
 
   Widget _baseInfo() {
@@ -107,31 +80,31 @@ class ProfileScreen extends BaseScreen {
               /// Name
               ProfileComponent(
                 title: 'Name',
-                textEditingController: nameController,
+                value: 'Jack Le',
               ),
 
               /// Phone number
               ProfileComponent(
                 title: 'Phone',
-                textEditingController: phoneController,
+                value: '093 693 xxxx',
               ),
 
               /// Day of birth
               ProfileComponent(
                 title: 'Day of birth',
-                textEditingController: dobController,
+                value: '1997/02/06',
               ),
 
               /// Position
               ProfileComponent(
                 title: 'Position',
-                textEditingController: posController,
+                value: 'Mobile developer',
               ),
 
               /// Country
               ProfileComponent(
                 title: 'Country',
-                textEditingController: countryController,
+                value: 'Viet Nam Country',
               ),
             ]));
   }
@@ -143,9 +116,13 @@ class ProfileScreen extends BaseScreen {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
+          /// Bonus
           Container(
               margin: EdgeInsets.only(left: margin10),
-              child: Icon(Icons.edit, color: whiteColor)),
+              child: Text('Point : 20',
+                  style: TextStyle(color: Colors.teal[300]))),
+
+          /// Avatar
           InkWell(
               onTap: () {
                 DialogUtil().showPhotoDialog(context);
@@ -160,6 +137,8 @@ class ProfileScreen extends BaseScreen {
                   child: Image.asset('assets/images/verify.png'),
                 ),
               )),
+
+          /// Edit profile
           InkWell(
             onTap: () {
               /// Call API update profile
