@@ -15,6 +15,24 @@ class ProfileScreen extends BaseScreen {
         /// Avatar
         _avatar(),
 
+        /// Name
+        Container(
+            margin: EdgeInsets.only(top: margin20),
+            child: Text('Jack Le',
+                style:
+                    TextStyle(fontSize: font16, fontWeight: FontWeight.bold))),
+
+        /// Description
+
+        Container(
+            decoration: BoxDecoration(color: desColor),
+            padding: EdgeInsets.all(padding10),
+            margin:
+                EdgeInsets.only(top: margin5, left: margin10, right: margin10),
+            child: Text(
+              'I love coding, i like to create new products to deserve living demand people.',
+            )),
+
         /// Base info
         _baseInfo(),
 
@@ -46,7 +64,13 @@ class ProfileScreen extends BaseScreen {
         /// New features
         FeatureComponent(
           text: 'News features',
-          onTap: () {},
+          onTap: () {
+            pushScreen(
+                context,
+                BaseWidget(
+                  screen: Screens.NEW_FEATURE,
+                ));
+          },
         ),
       ],
     ));
@@ -64,25 +88,19 @@ class ProfileScreen extends BaseScreen {
                     padding: EdgeInsets.all(padding10),
                     alignment: Alignment.center,
                     child: Text(
-                      'Hide infomation',
+                      'Hide detail',
                       style: TextStyle(color: whiteColor, fontSize: font16),
                     ))),
             header: Flexible(
                 child: Container(
                     padding: EdgeInsets.all(padding10),
                     alignment: Alignment.center,
-                    child: Text('Show infomation',
+                    child: Text('Show detail',
                         style:
                             TextStyle(color: whiteColor, fontSize: font16)))),
             headerBackgroundColorStart: Colors.teal[300],
             headerBackgroundColorEnd: Colors.teal[300],
             children: [
-              /// Name
-              ProfileComponent(
-                title: 'Name',
-                value: 'Jack Le',
-              ),
-
               /// Phone number
               ProfileComponent(
                 title: 'Phone',
@@ -119,8 +137,9 @@ class ProfileScreen extends BaseScreen {
           /// Bonus
           Container(
               margin: EdgeInsets.only(left: margin10),
-              child: Text('Point : 20',
-                  style: TextStyle(color: Colors.teal[300]))),
+              child: Text('20',
+                  style: TextStyle(
+                      color: Colors.teal[300], fontWeight: FontWeight.bold))),
 
           /// Avatar
           InkWell(
@@ -141,7 +160,11 @@ class ProfileScreen extends BaseScreen {
           /// Edit profile
           InkWell(
             onTap: () {
-              /// Call API update profile
+              pushScreen(
+                  context,
+                  BaseWidget(
+                    screen: Screens.EDIT_PROFILE,
+                  ));
             },
             child: Container(
               margin: EdgeInsets.only(right: margin10),

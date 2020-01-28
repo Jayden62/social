@@ -7,6 +7,8 @@ import 'package:lsn/modules/login/PhoneScreen.dart';
 import 'package:lsn/modules/parent/HomeScreen.dart';
 import 'package:lsn/modules/parent/feed/FeedScreen.dart';
 import 'package:lsn/modules/parent/notification/NotificationScreen.dart';
+import 'package:lsn/modules/parent/profile/EditProfileScreen.dart';
+import 'package:lsn/modules/parent/profile/NewFeatureScreen.dart';
 import 'package:lsn/modules/parent/profile/ProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/ViewPostScreen.dart';
 import 'package:lsn/modules/parent/technews/TechNewsScreen.dart';
@@ -41,7 +43,13 @@ class Screens {
   static const String VIEW_POST = 'view post';
 
   /// Notification screen
-  static const String NOTIFICATION = 'notificationn';
+  static const String NOTIFICATION = 'notification';
+
+  /// New feature screen
+  static const String NEW_FEATURE = 'new feature';
+
+  /// Edit profile screen
+  static const String EDIT_PROFILE = 'edit profile';
 
   /// Init screen
   State<BaseWidget> initScreen({@required String screen}) {
@@ -76,6 +84,12 @@ class Screens {
         break;
       case NOTIFICATION:
         state = NotificationScreen();
+        break;
+      case NEW_FEATURE:
+        state = NewFeatureScreen();
+        break;
+      case EDIT_PROFILE:
+        state = EditProfileScreen();
         break;
     }
     return state;

@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
@@ -20,6 +21,8 @@ class NotificationScreen extends BaseScreen {
 
   Widget _notifications() {
     return Expanded(
+        child: Container(
+      margin: EdgeInsets.only(top: margin10),
       child: ListView(
         children: <Widget>[
           NotificationItem(),
@@ -27,37 +30,57 @@ class NotificationScreen extends BaseScreen {
           NotificationItem(),
         ],
       ),
-    );
+    ));
   }
 
   Widget _contributors() {
     return Container(
-        constraints: BoxConstraints.expand(height: height120),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: Colors.teal[200],
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(radius50),
-                bottomRight: Radius.circular(radius50))),
+        margin: EdgeInsets.only(top: margin10),
         child: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: margin10),
-              child: Text('Top contributors',
-                  style: TextStyle(
-                      fontSize: font18,
-                      color: whiteColor,
-                      fontStyle: FontStyle.italic)),
-            ),
-            Expanded(
-                child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                ContributorComponent(),
-                ContributorComponent(),
-                ContributorComponent(),
+            /// Carousel
+            CarouselSlider(
+              items: [
+                ContributorItem(),
+                ContributorItem(),
+                ContributorItem(),
               ],
-            )),
+              autoPlay: true,
+              enlargeCenterPage: true,
+              viewportFraction: 0.9,
+              aspectRatio: 2.0,
+              height: height150,
+              onPageChanged: (pageIndex) {
+                setState(() {
+//                  selectedPromotion = promotions[pageIndex];
+                });
+              },
+            ),
+
+            /// Indicators
+//            Row(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: promotions.map((item) {
+//                  /// Out point
+//                  return Container(
+//                      width: pointSize,
+//                      height: pointSize,
+//                      margin: EdgeInsets.only(
+//                          top: margin10, left: margin5, right: margin5),
+//                      decoration: BoxDecoration(
+//                          shape: BoxShape.circle, color: darkGrayColor),
+//
+//                      /// In point
+//                      child: Container(
+//                        width: pointSize,
+//                        height: pointSize,
+//                        decoration: BoxDecoration(
+//                            shape: BoxShape.circle,
+//                            color: selectedPromotion == item
+//                                ? Colors.red[400]
+//                                : darkGrayColor),
+//                      ));
+//                }).toList()),
           ],
         ));
   }
