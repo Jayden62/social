@@ -53,6 +53,7 @@ var height200 = 200.0;
 var height300 = 300.0;
 
 /// Width
+var width60 = 60.0;
 var width80 = 80.0;
 var width100 = 100.0;
 var width120 = 120.0;

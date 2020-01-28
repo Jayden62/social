@@ -6,16 +6,13 @@ import 'package:lsn/modules/login/PasswordScreen.dart';
 import 'package:lsn/modules/login/PhoneScreen.dart';
 import 'package:lsn/modules/parent/HomeScreen.dart';
 import 'package:lsn/modules/parent/feed/FeedScreen.dart';
+import 'package:lsn/modules/parent/notification/NotificationScreen.dart';
 import 'package:lsn/modules/parent/profile/ProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/ViewPostScreen.dart';
 import 'package:lsn/modules/parent/technews/TechNewsScreen.dart';
 
 /// Factory pattern
 class Screens {
-  /**
-   * Module login start
-   */
-
   /// Phone screen
   static const String PHONE = 'phone';
 
@@ -28,10 +25,6 @@ class Screens {
   /// Additional screen
   static const String ADDITIONAL = 'additional';
 
-  /**
-   * Module login end
-   */
-
   /// Home screen
   static const String HOME = 'home';
 
@@ -41,19 +34,14 @@ class Screens {
   /// Tech news screen
   static const String TECH_NEWS = 'tech news';
 
-  /**
-   * Module profile start
-   */
-
   /// Profile screen
   static const String PROFILE = 'profile';
 
   /// View post screen
   static const String VIEW_POST = 'view post';
 
-  /**
-   * Module profile end
-   */
+  /// Notification screen
+  static const String NOTIFICATION = 'notificationn';
 
   /// Init screen
   State<BaseWidget> initScreen({@required String screen}) {
@@ -85,6 +73,9 @@ class Screens {
         break;
       case VIEW_POST:
         state = ViewPostScreen();
+        break;
+      case NOTIFICATION:
+        state = NotificationScreen();
         break;
     }
     return state;

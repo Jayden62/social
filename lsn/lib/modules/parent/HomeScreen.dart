@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
@@ -22,6 +23,9 @@ class HomeScreen extends BaseScreen {
       ),
       BaseWidget(
         screen: Screens.TECH_NEWS,
+      ),
+      BaseWidget(
+        screen: Screens.NOTIFICATION,
       ),
       BaseWidget(
         screen: Screens.PROFILE,
@@ -57,6 +61,17 @@ class HomeScreen extends BaseScreen {
         BottomNavyBarItem(
             title: Text('Tech news'),
             icon: Icon(Icons.zoom_out_map),
+            activeColor: Colors.teal,
+            inactiveColor: Colors.teal),
+
+        /// Notification
+        BottomNavyBarItem(
+            title: Text('Notification'),
+            icon: Badge(
+                badgeContent: Text('0',
+                    style: TextStyle(fontSize: font10, color: whiteColor)),
+                padding: EdgeInsets.all(padding3),
+                child: Container(child: Icon(Icons.notifications))),
             activeColor: Colors.teal,
             inactiveColor: Colors.teal),
 
