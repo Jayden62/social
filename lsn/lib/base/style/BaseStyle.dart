@@ -24,6 +24,7 @@ var size28 = 28.0;
 var size24 = 24.0;
 var size20 = 20.0;
 var size18 = 18.0;
+var size15 = 15.0;
 var size16 = 16.0;
 var boxHeight = 45.0;
 var avatarSize = 100.0;
@@ -47,12 +48,14 @@ var height35 = 35.0;
 var height10 = 10.0;
 var height18 = 18.0;
 var height20 = 20.0;
+var height25 = 25.0;
 var height80 = 80.0;
 var height70 = 70.0;
 var height200 = 200.0;
 var height300 = 300.0;
 
 /// Width
+var width25 = 25.0;
 var width60 = 60.0;
 var width80 = 80.0;
 var width100 = 100.0;
@@ -151,6 +154,7 @@ var margin30 = 30.0;
 var margin35 = 35.0;
 var margin40 = 40.0;
 var margin50 = 50.0;
+var margin100 = 100.0;
 
 var marginAll15 = EdgeInsets.all(margin15);
 var marginAll20 = EdgeInsets.all(margin20);

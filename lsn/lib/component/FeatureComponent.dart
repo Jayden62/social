@@ -4,8 +4,9 @@ import 'package:lsn/base/style/BaseStyle.dart';
 class FeatureComponent extends StatefulWidget {
   final String text;
   final Function onTap;
+  final Widget icon;
 
-  FeatureComponent({@required this.text, this.onTap});
+  FeatureComponent({@required this.text, this.onTap, this.icon});
 
   @override
   State<StatefulWidget> createState() => _FeatureComponentState();
@@ -16,25 +17,29 @@ class _FeatureComponentState extends State<FeatureComponent> {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () => widget.onTap(),
-        child: Column(
-          children: <Widget>[
-            Row(
+        child: Container(
+            color: whiteColor,
+            child: Column(
               children: <Widget>[
-                Expanded(
-                    child: Container(
-                        width: double.maxFinite,
-                        padding: EdgeInsets.all(padding15),
-                        child: Text(widget.text,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87)))),
-                Container(
-                    margin: EdgeInsets.only(right: margin10),
-                    child: Icon(Icons.navigate_next)),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Container(
+                            width: double.maxFinite,
+                            padding: EdgeInsets.all(padding15),
+                            child: Text(widget.text,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )))),
+                    Container(
+                        margin: EdgeInsets.only(right: margin10),
+                        child: widget.icon == null
+                            ? Icon(Icons.navigate_next)
+                            : widget.icon),
+                  ],
+                ),
+                Divider(color: greyColor, height: 1.0)
               ],
-            ),
-            Divider(color: greyColor, height: 1.0)
-          ],
-        ));
+            )));
   }
 }
