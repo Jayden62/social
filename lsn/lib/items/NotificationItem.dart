@@ -1,16 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
 class NotificationItem extends BaseItem {
+  final Function(bool value) callback;
+
+  NotificationItem({this.callback});
+
+  /// Detect swipe
+//  final SlidableController slidableController =
+//      SlidableController(onSlideIsOpenChanged: handleSlideIsOpenChanged);
+
+//  Color _fabColor;
+//
+//  static void handleSlideIsOpenChanged(bool isOpen) {
+//    setState(() {
+//      _fabColor = isOpen ? whiteColor : greyColor
+//    });
+//
+//  }
+
   @override
   Widget onInitItem(BuildContext context) {
-    return InkWell(
-        onTap: () {},
-        child: Container(
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      actionExtentRatio: 0.25,
+//      controller: slidableController,
+      child: Container(
           padding: EdgeInsets.all(padding5),
+          color: Colors.teal[100],
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               /// Photo
               _photo(),
@@ -18,8 +40,22 @@ class NotificationItem extends BaseItem {
               /// Description
               _description(),
             ],
-          ),
-        ));
+          )),
+      actions: <Widget>[
+        IconSlideAction(
+          caption: 'Archive',
+          color: Colors.blue,
+          icon: Icons.archive,
+          onTap: () {},
+        ),
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.indigo,
+          icon: Icons.delete,
+          onTap: () => {},
+        ),
+      ],
+    );
   }
 
   Widget _photo() {

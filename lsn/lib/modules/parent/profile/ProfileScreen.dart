@@ -19,7 +19,6 @@ class ProfileScreen extends BaseScreen {
       children: <Widget>[
         /// Background top
         _backgroundTop(),
-
         Column(
           children: <Widget>[
             Positioned(
@@ -42,7 +41,7 @@ class ProfileScreen extends BaseScreen {
             /// Show feature
             _showFeature(),
           ],
-        ),
+        )
       ],
     );
   }
@@ -74,17 +73,19 @@ class ProfileScreen extends BaseScreen {
                 )),
 
             /// Subscriber
-            InkWell(
-                onTap: () {},
-                child: Column(
-                  children: <Widget>[
-                    Text('2k', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Container(
-                        child: Text('SUBSCRIBERS',
-                            style: TextStyle(
-                                color: Colors.black45, fontSize: font12))),
-                  ],
-                )),
+            Expanded(
+              child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: <Widget>[
+                      Text('2k', style: TextStyle(fontWeight: FontWeight.bold)),
+                      Container(
+                          child: Text('SUBSCRIBERS',
+                              style: TextStyle(
+                                  color: Colors.black45, fontSize: font12))),
+                    ],
+                  )),
+            ),
 
             /// Following
             InkWell(
@@ -119,7 +120,10 @@ class ProfileScreen extends BaseScreen {
       return;
     }
 
-    file = image;
+    setState(() {
+      file = image;
+    });
+
 //    await CompressUtil().compressPath(file.path);
   }
 
@@ -152,6 +156,9 @@ class ProfileScreen extends BaseScreen {
         child: InkWell(
             onTap: () {
               DialogUtil().showPhotoDialog(context,
+
+                  /// View avatar
+                  onView: () {},
 
                   /// Open camera
                   onCamera: () async => _openCamera(),

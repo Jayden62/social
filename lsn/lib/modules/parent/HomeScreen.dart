@@ -34,6 +34,7 @@ class HomeScreen extends BaseScreen {
 
     return PageView(
       controller: _pageController,
+      physics: NeverScrollableScrollPhysics(),
       onPageChanged: (index) {
         setState(() => _currentIndex = index);
       },

@@ -25,7 +25,9 @@ class NotificationScreen extends BaseScreen {
       margin: EdgeInsets.only(top: margin10),
       child: ListView(
         children: <Widget>[
-          NotificationItem(),
+          NotificationItem(
+            callback: (bool value) {},
+          ),
           NotificationItem(),
           NotificationItem(),
         ],
@@ -35,52 +37,14 @@ class NotificationScreen extends BaseScreen {
 
   Widget _contributors() {
     return Container(
-        margin: EdgeInsets.only(top: margin10),
-        child: Column(
+        height: height150,
+        color: Colors.grey[200],
+        child: ListView(
+          scrollDirection: Axis.horizontal,
           children: <Widget>[
-            /// Carousel
-            CarouselSlider(
-              items: [
-                ContributorItem(),
-                ContributorItem(),
-                ContributorItem(),
-              ],
-              autoPlay: true,
-              enlargeCenterPage: true,
-              viewportFraction: 0.9,
-              aspectRatio: 2.0,
-              height: height150,
-              onPageChanged: (pageIndex) {
-                setState(() {
-//                  selectedPromotion = promotions[pageIndex];
-                });
-              },
-            ),
-
-            /// Indicators
-//            Row(
-//                mainAxisAlignment: MainAxisAlignment.center,
-//                children: promotions.map((item) {
-//                  /// Out point
-//                  return Container(
-//                      width: pointSize,
-//                      height: pointSize,
-//                      margin: EdgeInsets.only(
-//                          top: margin10, left: margin5, right: margin5),
-//                      decoration: BoxDecoration(
-//                          shape: BoxShape.circle, color: darkGrayColor),
-//
-//                      /// In point
-//                      child: Container(
-//                        width: pointSize,
-//                        height: pointSize,
-//                        decoration: BoxDecoration(
-//                            shape: BoxShape.circle,
-//                            color: selectedPromotion == item
-//                                ? Colors.red[400]
-//                                : darkGrayColor),
-//                      ));
-//                }).toList()),
+            ContributorItem(),
+            ContributorItem(),
+            ContributorItem(),
           ],
         ));
   }

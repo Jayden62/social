@@ -11,7 +11,7 @@ class DialogUtil {
 
   /// Show  photo dialog
   void showPhotoDialog(BuildContext context,
-      {Function onCamera, Function onGallery}) {
+      {Function onView, Function onCamera, Function onGallery}) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -38,6 +38,20 @@ class DialogUtil {
                       child: Container(
                           padding: EdgeInsets.all(padding10),
                           child: Image.asset('assets/images/logo.png'))),
+
+                  /// View avatar
+                  InkWell(
+                    onTap: () {
+                      popDialog(context);
+                      onView();
+                    },
+                    child: Container(
+                      width: double.maxFinite,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(padding15),
+                      child: Text('View avatar'),
+                    ),
+                  ),
 
                   /// Camera
                   InkWell(
