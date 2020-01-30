@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
-class CommentComponent extends StatefulWidget {
+class ResponseComponent extends StatefulWidget {
   final TextEditingController textEditingController;
   final Function(String text) onChanged;
 
-  CommentComponent({this.textEditingController, this.onChanged});
+  ResponseComponent({this.textEditingController, this.onChanged});
 
   @override
   State<StatefulWidget> createState() {
-    return CommentComponentState();
+    return ResponseComponentState();
   }
 }
 
-class CommentComponentState extends State<CommentComponent> {
+class ResponseComponentState extends State<ResponseComponent> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +27,8 @@ class CommentComponentState extends State<CommentComponent> {
               style: TextStyle(fontSize: font14, color: blackColor),
               controller: widget.textEditingController,
               decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Write a comment'),
+                  border: InputBorder.none,
+                  hintText: 'Response above question.'),
             )));
   }
 }

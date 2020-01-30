@@ -11,6 +11,7 @@ import 'package:lsn/modules/parent/profile/EditProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/NewFeatureScreen.dart';
 import 'package:lsn/modules/parent/profile/ProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/ViewPostScreen.dart';
+import 'package:lsn/modules/parent/question/QuestionDetailScreen.dart';
 import 'package:lsn/modules/parent/question/QuestionScreen.dart';
 
 /// Factory pattern
@@ -33,8 +34,11 @@ class Screens {
   /// Feed screen
   static const String FEED = 'feed';
 
-  /// Tech news screen
+  /// Question screen
   static const String QUESTION = 'question';
+
+  /// Question detail screen
+  static const String QUESTION_DETAIL = 'question detail';
 
   /// Profile screen
   static const String PROFILE = 'profile';
@@ -78,6 +82,9 @@ class Screens {
         break;
       case QUESTION:
         state = QuestionScreen();
+        break;
+      case QUESTION_DETAIL:
+        state = QuestionDetailScreen();
         break;
       case VIEW_POST:
         state = ViewPostScreen();

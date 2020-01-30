@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/component/CommentComponent.dart';
+import 'package:lsn/component/ResponseComponent.dart';
 
 class QuestionItem extends BaseItem {
   final Function callback;
@@ -26,7 +26,7 @@ class QuestionItem extends BaseItem {
               _question(),
 
               /// Comment
-              CommentComponent(),
+              ResponseComponent(),
             ],
           ),
         ));
