@@ -11,6 +11,7 @@ import 'package:lsn/modules/parent/profile/EditProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/NewFeatureScreen.dart';
 import 'package:lsn/modules/parent/profile/ProfileScreen.dart';
 import 'package:lsn/modules/parent/profile/ViewPostScreen.dart';
+import 'package:lsn/modules/parent/question/BaseQuestionScreen.dart';
 import 'package:lsn/modules/parent/question/QuestionDetailScreen.dart';
 import 'package:lsn/modules/parent/question/QuestionScreen.dart';
 
@@ -36,6 +37,9 @@ class Screens {
 
   /// Question screen
   static const String QUESTION = 'question';
+
+  /// Base question screen
+  static const String BASE_QUESTION = 'base question';
 
   /// Question detail screen
   static const String QUESTION_DETAIL = 'question detail';
@@ -82,6 +86,9 @@ class Screens {
         break;
       case QUESTION:
         state = QuestionScreen();
+        break;
+      case BASE_QUESTION:
+        state = BaseQuestionScreen();
         break;
       case QUESTION_DETAIL:
         state = QuestionDetailScreen();
