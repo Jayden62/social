@@ -30,7 +30,6 @@ class NotificationItem extends BaseItem {
 //      controller: slidableController,
       child: Container(
           padding: EdgeInsets.all(padding5),
-          color: Colors.teal[100],
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

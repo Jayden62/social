@@ -8,6 +8,7 @@ import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/FeatureComponent.dart';
 import 'package:lsn/component/ProfileComponent.dart';
+import 'package:lsn/items/FavoritePhotoItem.dart';
 import 'package:lsn/util/DialogUtil.dart';
 
 class ProfileScreen extends BaseScreen {
@@ -19,29 +20,39 @@ class ProfileScreen extends BaseScreen {
       children: <Widget>[
         /// Background top
         _backgroundTop(),
-        Column(
-          children: <Widget>[
-            Positioned(
-                child: Container(
-                    margin: EdgeInsets.only(
-                        top: margin100, right: margin40, left: margin40),
-                    child: Stack(
-                      children: <Widget>[
-                        /// Card info
-                        _cardInfo(),
 
-                        /// Avatar
-                        _avatar(),
-                      ],
-                    ))),
+        /// Show content
+        _showContent(),
+      ],
+    );
+  }
 
-            /// Show detail
-            _showDetail(),
+  Widget _showContent() {
+    return ListView(
+      shrinkWrap: true,
+      children: <Widget>[
+        Positioned(
+            child: Container(
+                margin: EdgeInsets.only(
+                    top: margin100, right: margin40, left: margin40),
+                child: Stack(
+                  children: <Widget>[
+                    /// Card info
+                    _cardInfo(),
 
-            /// Show feature
-            _showFeature(),
-          ],
-        )
+                    /// Avatar
+                    _avatar(),
+                  ],
+                ))),
+
+        /// Show favorite photo
+        _showFavoritePhoto(),
+
+        /// Show detail
+        _showDetail(),
+
+        /// Show feature
+        _showFeature(),
       ],
     );
   }
@@ -193,6 +204,38 @@ class ProfileScreen extends BaseScreen {
     );
   }
 
+  Widget _showFavoritePhoto() {
+    return Container(
+      margin: EdgeInsets.only(top: margin10),
+      color: whiteColor,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          /// See all
+          Container(
+              margin: EdgeInsets.only(
+                  top: margin10, right: margin20, bottom: margin10),
+              alignment: Alignment.topRight,
+              child: Text('See all')),
+
+          /// Photos
+          Container(
+              height: height150,
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  FavoritePhotoItem(),
+                  FavoritePhotoItem(),
+                  FavoritePhotoItem(),
+                ],
+              ))
+        ],
+      ),
+    );
+  }
+
   Widget _cardInfo() {
     return Card(
         elevation: elevation4,
@@ -235,6 +278,7 @@ class ProfileScreen extends BaseScreen {
   Widget _showFeature() {
     return Expanded(
         child: ListView(
+      shrinkWrap: true,
       children: <Widget>[
         /// Line
         Divider(color: greyColor, height: 1.0),
@@ -249,19 +293,6 @@ class ProfileScreen extends BaseScreen {
                 BaseWidget(
                   screen: Screens.EDIT_PROFILE,
                 ));
-          },
-        ),
-
-        /// Albums
-        FeatureComponent(
-          text: 'Albums',
-          icon: Icon(Icons.photo_library),
-          onTap: () {
-//            pushScreen(
-//                context,
-//                BaseWidget(
-//                  screen: Screens.EDIT_PROFILE,
-//                ));
           },
         ),
 
@@ -283,9 +314,9 @@ class ProfileScreen extends BaseScreen {
   Widget _showDetail() {
     return Container(
         color: whiteColor,
-        margin: EdgeInsets.only(top: margin20),
+        margin: EdgeInsets.only(top: margin10),
         child: ConfigurableExpansionTile(
-            initiallyExpanded: true,
+            initiallyExpanded: false,
             animatedWidgetFollowingHeader:
                 Icon(Icons.expand_more, color: whiteColor),
             headerExpanded: Flexible(
@@ -303,8 +334,8 @@ class ProfileScreen extends BaseScreen {
                     child: Text('Show detail',
                         style:
                             TextStyle(color: whiteColor, fontSize: font16)))),
-            headerBackgroundColorStart: Colors.teal[300],
-            headerBackgroundColorEnd: Colors.teal[300],
+            headerBackgroundColorStart: Colors.teal[200],
+            headerBackgroundColorEnd: Colors.teal[200],
             children: [
               /// Phone number
               ProfileComponent(
