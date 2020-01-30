@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
 class ResponseComponent extends StatefulWidget {
-  final TextEditingController textEditingController;
-  final Function(String text) onChanged;
+  final Function(String text) onReply;
 
-  ResponseComponent({this.textEditingController, this.onChanged});
+  ResponseComponent({this.onReply});
 
   @override
   State<StatefulWidget> createState() {
@@ -14,22 +13,45 @@ class ResponseComponent extends StatefulWidget {
 }
 
 class ResponseComponentState extends State<ResponseComponent> {
+  var resController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    resController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         height: boxHeight,
         decoration: _commentDecoration,
         margin: EdgeInsets.all(margin10),
-        child: Container(
-            margin: EdgeInsets.only(left: margin15),
-            child: TextField(
-              onChanged: widget.onChanged,
-              style: TextStyle(fontSize: font14, color: blackColor),
-              controller: widget.textEditingController,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Response above question.'),
-            )));
+        child: Row(
+          children: <Widget>[
+            Expanded(
+                child: Container(
+                    margin: EdgeInsets.only(left: margin10),
+                    child: TextField(
+                      style: TextStyle(fontSize: font14, color: blackColor),
+                      controller: resController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Your answer.'),
+                    ))),
+            InkWell(
+              onTap: () {
+                widget.onReply(resController.text);
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: margin10),
+                child: Icon(
+                  Icons.send,
+                  size: size18,
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 

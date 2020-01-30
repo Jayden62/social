@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/InputSearchComponent.dart';
-import 'package:lsn/component/ProfileComponent.dart';
 import 'package:lsn/items/FilterItem.dart';
 import 'package:lsn/items/QuestionItem.dart';
 
@@ -87,9 +86,7 @@ class QuestionScreen extends BaseScreen {
     return Expanded(
       child: ListView(
         children: <Widget>[
-
           QuestionItem(),
-
         ],
       ),
     );

@@ -26,7 +26,13 @@ class QuestionItem extends BaseItem {
               _question(),
 
               /// Comment
-              ResponseComponent(),
+              ResponseComponent(
+                onReply: (String text) {
+                  if (text.isEmpty) {
+                    print('is Empty.');
+                  }
+                },
+              ),
             ],
           ),
         ));
