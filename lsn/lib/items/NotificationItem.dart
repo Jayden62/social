@@ -59,8 +59,7 @@ class NotificationItem extends BaseItem {
 
   Widget _photo() {
     return Container(
-      height: height60,
-      width: width60,
+
       margin: EdgeInsets.only(left: margin10, top: margin5, bottom: margin5),
       constraints: BoxConstraints.expand(height: height60, width: width60),
       alignment: Alignment.bottomRight,

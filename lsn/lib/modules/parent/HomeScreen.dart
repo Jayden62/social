@@ -22,7 +22,7 @@ class HomeScreen extends BaseScreen {
         screen: Screens.FEED,
       ),
       BaseWidget(
-        screen: Screens.TECH_NEWS,
+        screen: Screens.QUESTION,
       ),
       BaseWidget(
         screen: Screens.NOTIFICATION,
@@ -60,8 +60,8 @@ class HomeScreen extends BaseScreen {
 
         /// Tech news
         BottomNavyBarItem(
-            title: Text('Tech news'),
-            icon: Icon(Icons.zoom_out_map),
+            title: Text('Question'),
+            icon: Icon(Icons.question_answer),
             activeColor: Colors.teal,
             inactiveColor: Colors.teal),
 
