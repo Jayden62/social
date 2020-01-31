@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "480860078833",
+    "firebase_url": "https://learning-social-4b697.firebaseio.com",
+    "project_id": "learning-social-4b697",
+    "storage_bucket": "learning-social-4b697.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480860078833:android:a8088608d9d510e6025f50",
+        "android_client_info": {
+          "package_name": "social.lsn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480860078833-pndj95vbki8je6j4lleg1o39phbr81a4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEvo0RewesgcBthaLxQu-AzgH4KaHkfQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480860078833-pndj95vbki8je6j4lleg1o39phbr81a4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

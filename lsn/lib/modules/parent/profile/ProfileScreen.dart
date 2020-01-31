@@ -212,12 +212,26 @@ class ProfileScreen extends BaseScreen {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          /// See all
-          Container(
-              margin: EdgeInsets.only(
-                  top: margin10, right: margin20, bottom: margin10),
-              alignment: Alignment.topRight,
-              child: Text('See all')),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              InkWell(
+                  onTap: () {},
+                  child: Container(
+                      margin: EdgeInsets.only(
+                          top: margin10, left: margin20, bottom: margin10),
+                      child: Text(
+                        'Take photos',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ))),
+              InkWell(
+                  onTap: () {},
+                  child: Container(
+                      margin: EdgeInsets.only(
+                          top: margin10, right: margin20, bottom: margin10),
+                      child: Text('See all'))),
+            ],
+          ),
 
           /// Photos
           Container(

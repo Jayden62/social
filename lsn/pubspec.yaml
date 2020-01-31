@@ -35,6 +35,7 @@ dependencies:
   flutter_slidable: ^0.5.4
   flutter_spinkit: "^4.1.0"
   cached_network_image: 2.0.0-rc
+  firebase_auth: ^0.15.4
   flutter_localizations:
     sdk: flutter
 dev_dependencies:
