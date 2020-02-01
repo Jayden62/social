@@ -47,9 +47,9 @@ class VerifyScreen extends BaseScreen {
     FirebaseAuth.instance
         .signInWithCredential(authCredential)
         .then((authResult) {
-      final snackBar =
-          SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
-      Scaffold.of(context).showSnackBar(snackBar);
+//      final snackBar =
+//          SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
+//      Scaffold.of(context).showSnackBar(snackBar);
     });
   }
 
