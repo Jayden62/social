@@ -1,5 +1,6 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
@@ -7,15 +8,16 @@ import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/middle/model/BaseCountryRequest.dart';
+import 'package:lsn/util/DialogUtil.dart';
 
 class NewPhoneScreen extends BaseScreen {
   bool isEnable = false;
   var phoneNumController = TextEditingController();
-  String phoneCode = '';
-  String phoneIso = '';
-  String phoneCountry = '';
   Country _country;
   BaseCountryRequest baseCountryRequest;
+  String _phoneValue;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  String _verificationId = '';
 
   @override
   void dispose() {
@@ -88,7 +90,7 @@ class NewPhoneScreen extends BaseScreen {
               margin: EdgeInsets.only(
                   top: margin40, left: margin20, right: margin20),
               enable: isEnable,
-              onPress: () {
+              onPress: () async {
                 if (_country == null) {
                   baseCountryRequest = BaseCountryRequest(
                       phoneCode: 'VN',
@@ -102,18 +104,71 @@ class NewPhoneScreen extends BaseScreen {
                       phoneNumber: phoneNumController.text,
                       phoneCountryName: _country.name);
                 }
-                pushScreen(
-                    context,
-                    BaseWidget(
-                      screen: Screens.VERIFY,
-                      arguments: baseCountryRequest,
-                    ));
+
+                /// Check sms code
+                if (baseCountryRequest.phoneNumber.startsWith('0')) {
+                  _phoneValue = baseCountryRequest.phoneNumber
+                      .substring(1, baseCountryRequest.phoneNumber.length);
+                } else {
+                  _phoneValue = baseCountryRequest.phoneNumber;
+                }
+                _phoneValue = '${baseCountryRequest.phoneIso}$_phoneValue';
+                await _verifyPhoneNumber(context);
               },
             ),
           ],
         ),
       ),
     );
+  }
+
+  _verificationComplete(AuthCredential authCredential, BuildContext context) {
+    FirebaseAuth.instance
+        .signInWithCredential(authCredential)
+        .then((authResult) async {
+//      final snackBar =
+//          SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
+//      Scaffold.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  _smsCodeSent(String verificationId, List<int> code) {
+    // set the verification code so that we can use it to log the user in
+    _verificationId = verificationId;
+
+    pushScreen(
+        context,
+        BaseWidget(
+          screen: Screens.VERIFY,
+          arguments: [baseCountryRequest, _phoneValue],
+        ));
+  }
+
+  _verificationFailed(AuthException authException, BuildContext context) {
+
+    /// Break system
+
+
+    print("Exception!! message:" + authException.message.toString());
+  }
+
+  _codeAutoRetrievalTimeout(String verificationId) {
+    _verificationId = verificationId;
+  }
+
+  _verifyPhoneNumber(BuildContext context) async {
+    await _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: _phoneValue,
+        timeout: Duration(seconds: 5),
+        verificationCompleted: (authCredential) =>
+            _verificationComplete(authCredential, context),
+        verificationFailed: (authException) =>
+            _verificationFailed(authException, context),
+        codeAutoRetrievalTimeout: (verificationId) =>
+            _codeAutoRetrievalTimeout(verificationId),
+        // called when the SMS code is sent
+        codeSent: (verificationId, [code]) =>
+            _smsCodeSent(verificationId, [code]));
   }
 
   Widget _phoneNumber() {

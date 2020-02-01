@@ -5,69 +5,18 @@ import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/middle/model/BaseCountryRequest.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class VerifyScreen extends BaseScreen {
   bool isEnable = false;
-  String currentText = '';
-  String _smsVerificationCode = '';
+  String _smsCode = '';
   BaseCountryRequest data;
   String _phoneValue;
 
   @override
   void initState() {
     super.initState();
-    data = widget.arguments;
-
-    /// Check phone number contain '0'
-    if (data.phoneNumber.startsWith('0')) {
-      _phoneValue = data.phoneNumber.substring(1, data.phoneNumber.length);
-      return;
-    }
-    _phoneValue = data.phoneNumber;
-  }
-
-  _verifyPhoneNumber(BuildContext context) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    await _auth.verifyPhoneNumber(
-        phoneNumber: _phoneValue,
-        timeout: Duration(seconds: 5),
-        verificationCompleted: (authCredential) =>
-            _verificationComplete(authCredential, context),
-        verificationFailed: (authException) =>
-            _verificationFailed(authException, context),
-        codeAutoRetrievalTimeout: (verificationId) =>
-            _codeAutoRetrievalTimeout(verificationId),
-        // called when the SMS code is sent
-        codeSent: (verificationId, [code]) =>
-            _smsCodeSent(verificationId, [code]));
-  }
-
-  _verificationComplete(AuthCredential authCredential, BuildContext context) {
-    FirebaseAuth.instance
-        .signInWithCredential(authCredential)
-        .then((authResult) {
-//      final snackBar =
-//          SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
-//      Scaffold.of(context).showSnackBar(snackBar);
-    });
-  }
-
-  _smsCodeSent(String verificationId, List<int> code) {
-    // set the verification code so that we can use it to log the user in
-    _smsVerificationCode = verificationId;
-  }
-
-  _verificationFailed(AuthException authException, BuildContext context) {
-    final snackBar = SnackBar(
-        content:
-            Text("Exception!! message:" + authException.message.toString()));
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
-
-  _codeAutoRetrievalTimeout(String verificationId) {
-    // set the verification code so that we can use it to log the user in
-    _smsVerificationCode = verificationId;
+    data = widget.arguments[0];
+    _phoneValue = widget.arguments[1];
   }
 
   @override
@@ -113,9 +62,9 @@ class VerifyScreen extends BaseScreen {
           },
           onChanged: (value) {
             setState(() {
-              currentText = value;
+              _smsCode = value;
             });
-            print('current text $currentText');
+            print('current text $_smsCode');
           },
         ));
   }
@@ -139,8 +88,6 @@ class VerifyScreen extends BaseScreen {
 //                      screen: Screens.PASSWORD,
 //                      arguments: 'additional',
 //                    ));
-
-                await _verifyPhoneNumber(context);
               },
             ),
           ],
