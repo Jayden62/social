@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/modules/login/AdditionalScreen.dart';
+import 'package:lsn/modules/login/NewPhoneScreen.dart';
 import 'package:lsn/modules/login/VerifyScreen.dart';
 import 'package:lsn/modules/login/PasswordScreen.dart';
 import 'package:lsn/modules/login/PhoneScreen.dart';
@@ -22,6 +23,9 @@ class Screens {
 
   /// Password screen
   static const String PASSWORD = 'password';
+
+  /// New phone screen
+  static const String NEW_PHONE = 'new phone';
 
   /// Verify screen
   static const String VERIFY = 'verify';
@@ -68,6 +72,9 @@ class Screens {
         break;
       case PASSWORD:
         state = PasswordScreen();
+        break;
+      case NEW_PHONE:
+        state = NewPhoneScreen();
         break;
       case VERIFY:
         state = VerifyScreen();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
-import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
@@ -8,20 +7,23 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class VerifyScreen extends BaseScreen {
-  var phoneNumController = TextEditingController();
   bool isEnable = false;
   String currentText = '';
   String _smsVerificationCode = '';
+  String _smsCode = '';
+  String phoneNo;
+  String smsCode;
+  String verificationId;
+  String value;
 
   @override
   void initState() {
     super.initState();
-    phoneNumController.clear();
+    value = widget.arguments;
   }
 
-
   _verifyPhoneNumber(BuildContext context) async {
-    String phoneNumber = '+84' + phoneNumController.text.toString();
+    String phoneNumber = '+84' + value;
     final FirebaseAuth _auth = FirebaseAuth.instance;
     await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
@@ -50,9 +52,6 @@ class VerifyScreen extends BaseScreen {
   _smsCodeSent(String verificationId, List<int> code) {
     // set the verification code so that we can use it to log the user in
     _smsVerificationCode = verificationId;
-
-    print(_smsVerificationCode);
-
   }
 
   _verificationFailed(AuthException authException, BuildContext context) {
@@ -96,8 +95,9 @@ class VerifyScreen extends BaseScreen {
         padding:
             EdgeInsets.symmetric(vertical: padding8, horizontal: padding20),
         child: PinCodeTextField(
-          length: 4,
+          length: 6,
           obsecureText: false,
+          textInputType: TextInputType.number,
           animationType: AnimationType.fade,
           shape: PinCodeFieldShape.underline,
           animationDuration: Duration(milliseconds: 300),
@@ -121,9 +121,6 @@ class VerifyScreen extends BaseScreen {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            /// Phone number
-            _phoneNumber(),
-
             /// CommonButtonComponent
             CommonButtonComponent(
               text: 'Verify',
@@ -146,30 +143,6 @@ class VerifyScreen extends BaseScreen {
         ),
       ),
     );
-  }
-
-  Widget _phoneNumber() {
-    return Container(
-        margin: EdgeInsets.only(top: margin20, left: margin20, right: margin20),
-        child: TextField(
-            keyboardType: TextInputType.phone,
-            controller: phoneNumController,
-            onChanged: (String text) {
-              if (text.isEmpty) {
-                setState(() {
-                  isEnable = false;
-                });
-              } else {
-                setState(() {
-                  isEnable = true;
-                });
-              }
-            },
-            decoration: InputDecoration(
-                labelText: "Phone number",
-                labelStyle: TextStyle(fontSize: font14, color: greyColor),
-                border: phoneBorder,
-                focusedBorder: phoneBorder)));
   }
 
   @override

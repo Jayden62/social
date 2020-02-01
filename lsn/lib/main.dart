@@ -33,7 +33,6 @@ class MainScreen extends StatefulWidget {
   }
 }
 
-
 class MainState extends State<MainScreen> {
   Widget screen;
   final GlobalKey _scaffoldKey = GlobalKey();
@@ -116,7 +115,7 @@ class MainState extends State<MainScreen> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           key: _scaffoldKey,
-          body: BaseWidget(screen: Screens.VERIFY),
+          body: BaseWidget(screen: Screens.PHONE),
         ));
   }
 }

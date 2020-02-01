@@ -68,7 +68,7 @@ class PhoneScreen extends BaseScreen {
           ),
 
           /// Register
-          _newbie(),
+          _newPhone(),
 
           /// InputSelectComponent
           InputSelectComponent(
@@ -94,20 +94,20 @@ class PhoneScreen extends BaseScreen {
     ));
   }
 
-  Widget _newbie() {
+  Widget _newPhone() {
     return InkWell(
         onTap: () {
           pushScreen(
               context,
               BaseWidget(
-                screen: Screens.VERIFY,
+                screen: Screens.NEW_PHONE,
               ));
         },
         child: Container(
           margin: EdgeInsets.only(right: margin20, top: margin20),
           alignment: Alignment.centerRight,
           child: Text(
-            'New member',
+            'New phone',
             style: TextStyle(
                 color: Colors.red[600], decoration: TextDecoration.underline),
           ),
