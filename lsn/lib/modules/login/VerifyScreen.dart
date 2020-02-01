@@ -3,6 +3,7 @@ import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
+import 'package:lsn/middle/model/BaseCountryRequest.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,23 +11,26 @@ class VerifyScreen extends BaseScreen {
   bool isEnable = false;
   String currentText = '';
   String _smsVerificationCode = '';
-  String _smsCode = '';
-  String phoneNo;
-  String smsCode;
-  String verificationId;
-  String value;
+  BaseCountryRequest data;
+  String _phoneValue;
 
   @override
   void initState() {
     super.initState();
-    value = widget.arguments;
+    data = widget.arguments;
+
+    /// Check phone number contain '0'
+    if (data.phoneNumber.startsWith('0')) {
+      _phoneValue = data.phoneNumber.substring(1, data.phoneNumber.length);
+      return;
+    }
+    _phoneValue = data.phoneNumber;
   }
 
   _verifyPhoneNumber(BuildContext context) async {
-    String phoneNumber = '+84' + value;
     final FirebaseAuth _auth = FirebaseAuth.instance;
     await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
+        phoneNumber: _phoneValue,
         timeout: Duration(seconds: 5),
         verificationCompleted: (authCredential) =>
             _verificationComplete(authCredential, context),

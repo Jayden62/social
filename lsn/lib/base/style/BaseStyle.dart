@@ -196,3 +196,6 @@ var searchHintStyle = TextStyle(fontSize: font14, color: Colors.grey);
 /// Style
 var phoneBorder =
     UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey));
+var countryPhoneDecoration = BoxDecoration(
+    border: Border.all(width: widthAHalf, color: greyColor),
+    borderRadius: BorderRadius.all(Radius.circular(radius5)));

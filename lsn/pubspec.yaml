@@ -36,6 +36,7 @@ dependencies:
   flutter_spinkit: "^4.1.0"
   cached_network_image: 2.0.0-rc
   firebase_auth: ^0.15.4
+  country_pickers: ^1.1.0
   flutter_localizations:
     sdk: flutter
 dev_dependencies:

@@ -23,6 +23,7 @@ class _LogoComponentState extends State<LogoComponent> {
               'assets/images/logo.png',
               height: height120,
               width: width120,
+              fit: BoxFit.cover,
             )));
   }
 }
