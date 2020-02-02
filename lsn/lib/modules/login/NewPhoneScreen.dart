@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +11,7 @@ import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/middle/model/BaseCountryRequest.dart';
 import 'package:lsn/util/DialogUtil.dart';
+import 'package:lsn/util/SnackbarUtil.dart';
 
 class NewPhoneScreen extends BaseScreen {
   bool isEnable = false;
@@ -18,6 +21,10 @@ class NewPhoneScreen extends BaseScreen {
   String _phoneValue;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String _verificationId = '';
+  int _timeResendOTP = 60;
+  bool showResend = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isResend = false;
 
   @override
   void dispose() {
@@ -75,50 +82,80 @@ class NewPhoneScreen extends BaseScreen {
   Widget _views() {
     return Expanded(
       child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            /// Country phone code
-            _countryPhoneCode(),
+          child: Column(
+        children: <Widget>[
+          /// Country phone code
+          _countryPhoneCode(),
 
-            /// Phone number
-            _phoneNumber(),
+          /// Phone number
+          _phoneNumber(),
 
-            /// CommonButtonComponent
-            CommonButtonComponent(
-              text: 'Next',
-              width: width150,
-              margin: EdgeInsets.only(
-                  top: margin40, left: margin20, right: margin20),
-              enable: isEnable,
-              onPress: () async {
-                if (_country == null) {
-                  baseCountryRequest = BaseCountryRequest(
-                      phoneCode: 'VN',
-                      phoneNumber: phoneNumController.text,
-                      phoneIso: '+84',
-                      phoneCountryName: 'VietNam');
-                } else {
-                  baseCountryRequest = BaseCountryRequest(
-                      phoneCode: _country.phoneCode,
-                      phoneIso: _country.isoCode,
-                      phoneNumber: phoneNumController.text,
-                      phoneCountryName: _country.name);
-                }
+          /// CommonButtonComponent
+          CommonButtonComponent(
+            text: 'Next',
+            width: width150,
+            margin:
+                EdgeInsets.only(top: margin40, left: margin20, right: margin20),
+            enable: isEnable,
+            onPress: () async {
+              if (_country == null) {
+                baseCountryRequest = BaseCountryRequest(
+                    phoneCode: 'VN',
+                    phoneNumber: phoneNumController.text,
+                    phoneIso: '+84',
+                    phoneCountryName: 'VietNam');
+              } else {
+                baseCountryRequest = BaseCountryRequest(
+                    phoneCode: _country.phoneCode,
+                    phoneIso: _country.isoCode,
+                    phoneNumber: phoneNumController.text,
+                    phoneCountryName: _country.name);
+              }
 
-                /// Check sms code
-                if (baseCountryRequest.phoneNumber.startsWith('0')) {
-                  _phoneValue = baseCountryRequest.phoneNumber
-                      .substring(1, baseCountryRequest.phoneNumber.length);
-                } else {
-                  _phoneValue = baseCountryRequest.phoneNumber;
-                }
-                _phoneValue = '${baseCountryRequest.phoneIso}$_phoneValue';
-                await _verifyPhoneNumber(context);
-              },
+              /// Check sms code
+              if (baseCountryRequest.phoneNumber.startsWith('0')) {
+                _phoneValue = baseCountryRequest.phoneNumber
+                    .substring(1, baseCountryRequest.phoneNumber.length);
+              } else {
+                _phoneValue = baseCountryRequest.phoneNumber;
+              }
+              _phoneValue = '${baseCountryRequest.phoneIso}$_phoneValue';
+              await _verifyPhoneNumber(context);
+            },
+          ),
+
+          Container(
+            margin: EdgeInsets.only(top: margin20, right: margin20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                isResend
+                    ? Container(
+                        child: Text(
+                          _timeResendOTP.toString(),
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      )
+                    : Container(),
+                showResend
+                    ? InkWell(
+                        onTap: () {
+                          startTimer();
+                        },
+                        child: Container(
+                          child: Text(
+                            'Resend OTP',
+                            style: TextStyle(
+                                color: Colors.red,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ))
+                    : Container()
+              ],
             ),
-          ],
-        ),
-      ),
+          )
+        ],
+      )),
     );
   }
 
@@ -145,15 +182,18 @@ class NewPhoneScreen extends BaseScreen {
   }
 
   _verificationFailed(AuthException authException, BuildContext context) {
-
-    /// Break system
-
-
-    print("Exception!! message:" + authException.message.toString());
+    /// Show snack bar
+    SnackBarUtil().showSnackBar(
+        scaffoldKey: _scaffoldKey,
+        message: 'System OTP is not working, come back later !');
   }
 
   _codeAutoRetrievalTimeout(String verificationId) {
     _verificationId = verificationId;
+    setState(() {
+      showResend = true;
+      isEnable = false;
+    });
   }
 
   _verifyPhoneNumber(BuildContext context) async {
@@ -169,6 +209,27 @@ class NewPhoneScreen extends BaseScreen {
         // called when the SMS code is sent
         codeSent: (verificationId, [code]) =>
             _smsCodeSent(verificationId, [code]));
+  }
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    Timer _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) => setState(
+        () async {
+          if (_timeResendOTP < 1) {
+            timer.cancel();
+
+            await _verifyPhoneNumber(context);
+          } else {
+            _timeResendOTP = _timeResendOTP - 1;
+            setState(() {
+              isResend = true;
+            });
+          }
+        },
+      ),
+    );
   }
 
   Widget _phoneNumber() {
@@ -193,6 +254,11 @@ class NewPhoneScreen extends BaseScreen {
                 labelStyle: TextStyle(fontSize: font14, color: greyColor),
                 border: phoneBorder,
                 focusedBorder: phoneBorder)));
+  }
+
+  @override
+  Key onInitKey(BuildContext context) {
+    return _scaffoldKey;
   }
 
   @override
