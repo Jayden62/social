@@ -8,7 +8,7 @@ import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/FeatureComponent.dart';
 import 'package:lsn/component/ProfileComponent.dart';
-import 'package:lsn/items/FavoritePhotoItem.dart';
+import 'package:lsn/items/CollectionItem.dart';
 import 'package:lsn/util/DialogUtil.dart';
 
 class ProfileScreen extends BaseScreen {
@@ -53,13 +53,6 @@ class ProfileScreen extends BaseScreen {
 
             /// Avatar
             _avatar(),
-
-//
-//                    /// Show detail
-//                    _showDetail(),
-
-            /// Show feature
-//                    _showFeature(),
           ],
         ));
   }
@@ -179,10 +172,10 @@ class ProfileScreen extends BaseScreen {
                   onView: () {},
 
                   /// Open camera
-                  onCamera: () async => _openCamera(),
+                  onCamera: () async => await _openCamera(),
 
                   /// Open gallery
-                  onGallery: () async => _openGallery());
+                  onGallery: () async => await _openGallery());
             },
             child: Container(
                 height: height100,
@@ -236,20 +229,29 @@ class ProfileScreen extends BaseScreen {
                   child: Container(
                       margin: EdgeInsets.only(
                           top: margin10, right: margin20, bottom: margin10),
-                      child: Text('Create new',style: TextStyle(color: blueColor),))),
+                      child: Text(
+                        'Create new',
+                        style: TextStyle(color: blueColor),
+                      ))),
             ],
           ),
 
           /// Photos
           Container(
+              color: whiteColor,
               height: height150,
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  FavoritePhotoItem(),
-                  FavoritePhotoItem(),
-                  FavoritePhotoItem(),
+//                  Image.network(
+//                    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwlwvk3IDwOXiIQ4SVjpbz2rFmmNo2lbhzwp3JtttqJ_EIZWyo',
+//                    width: 150,
+//                  ),
+
+                  CollectionItem(),
+                  CollectionItem(),
+                  CollectionItem(),
                 ],
               ))
         ],
