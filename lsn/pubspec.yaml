@@ -63,6 +63,7 @@ flutter:
     - assets/images/verify.png
     - assets/images/response.png
     - assets/images/comming_soon.png
+    - assets/images/admin.jpg
 
     - assets/files/country.json
 

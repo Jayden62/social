@@ -117,7 +117,7 @@ class MainState extends State<MainScreen> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           key: _scaffoldKey,
-          body: BaseWidget(screen: Screens.PHONE),
+          body: BaseWidget(screen: Screens.HOME),
 //          body: DemoPage(),
         ));
   }

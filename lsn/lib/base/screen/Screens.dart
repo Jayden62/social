@@ -5,16 +5,16 @@ import 'package:lsn/modules/login/NewPhoneScreen.dart';
 import 'package:lsn/modules/login/VerifyScreen.dart';
 import 'package:lsn/modules/login/PasswordScreen.dart';
 import 'package:lsn/modules/login/PhoneScreen.dart';
-import 'package:lsn/modules/parent/HomeScreen.dart';
-import 'package:lsn/modules/parent/feed/FeedScreen.dart';
-import 'package:lsn/modules/parent/notification/NotificationScreen.dart';
-import 'package:lsn/modules/parent/profile/EditProfileScreen.dart';
-import 'package:lsn/modules/parent/profile/NewFeatureScreen.dart';
-import 'package:lsn/modules/parent/profile/ProfileScreen.dart';
-import 'package:lsn/modules/parent/profile/ViewPostScreen.dart';
-import 'package:lsn/modules/parent/question/BaseQuestionScreen.dart';
-import 'package:lsn/modules/parent/question/QuestionDetailScreen.dart';
-import 'package:lsn/modules/parent/question/QuestionScreen.dart';
+import 'package:lsn/modules/home/HomeScreen.dart';
+import 'package:lsn/modules/home/feed/FeedScreen.dart';
+import 'package:lsn/modules/home/notification/NotificationScreen.dart';
+import 'package:lsn/modules/home/profile/EditProfileScreen.dart';
+import 'package:lsn/modules/home/profile/NewFeatureScreen.dart';
+import 'package:lsn/modules/home/profile/ProfileScreen.dart';
+import 'package:lsn/modules/home/profile/ViewPostScreen.dart';
+import 'package:lsn/modules/home/question/BaseQuestionScreen.dart';
+import 'package:lsn/modules/home/question/QuestionDetailScreen.dart';
+import 'package:lsn/modules/home/question/QuestionScreen.dart';
 
 /// Factory pattern
 class Screens {

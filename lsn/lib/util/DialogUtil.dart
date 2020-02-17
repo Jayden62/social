@@ -91,7 +91,7 @@ class DialogUtil {
                       width: double.maxFinite,
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(padding15),
-                      child: Text('Dismiss'),
+                      child: Text('Close'),
                     ),
                   ),
                 ],

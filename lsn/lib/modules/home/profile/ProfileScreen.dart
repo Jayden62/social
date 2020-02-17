@@ -21,40 +21,47 @@ class ProfileScreen extends BaseScreen {
         /// Background top
         _backgroundTop(),
 
-        /// Show content
-        _showContent(),
+        /// Personal
+        _content(),
       ],
     );
   }
 
-  Widget _showContent() {
-    return ListView(
+  Widget _content() {
+    return Positioned(
+        child: Container(
+            child: ListView(
       shrinkWrap: true,
       children: <Widget>[
-        Positioned(
-            child: Container(
-                margin: EdgeInsets.only(
-                    top: margin100, right: margin40, left: margin40),
-                child: Stack(
-                  children: <Widget>[
-                    /// Card info
-                    _cardInfo(),
+        /// Personal
+        _personal(),
 
-                    /// Avatar
-                    _avatar(),
-                  ],
-                ))),
-
-        /// Show favorite photo
-        _showFavoritePhoto(),
-
-        /// Show detail
-        _showDetail(),
-
-        /// Show feature
-        _showFeature(),
+        /// Show collection
+        _showCollection(),
       ],
-    );
+    )));
+  }
+
+  Widget _personal() {
+    return Container(
+        margin:
+            EdgeInsets.only(top: margin100, right: margin40, left: margin40),
+        child: Stack(
+          children: <Widget>[
+            /// Card info
+            _cardInfo(),
+
+            /// Avatar
+            _avatar(),
+
+//
+//                    /// Show detail
+//                    _showDetail(),
+
+            /// Show feature
+//                    _showFeature(),
+          ],
+        ));
   }
 
   Widget _subInfo() {
@@ -153,7 +160,7 @@ class ProfileScreen extends BaseScreen {
   ImageProvider get _getImageFile {
     ImageProvider photo;
     if (file == null) {
-      photo = AssetImage('assets/images/logo.png');
+      photo = AssetImage('assets/images/admin.jpg');
     } else {
       photo = FileImage(File(file.path));
     }
@@ -204,7 +211,7 @@ class ProfileScreen extends BaseScreen {
     );
   }
 
-  Widget _showFavoritePhoto() {
+  Widget _showCollection() {
     return Container(
       margin: EdgeInsets.only(top: margin10),
       color: whiteColor,
@@ -221,7 +228,7 @@ class ProfileScreen extends BaseScreen {
                       margin: EdgeInsets.only(
                           top: margin10, left: margin20, bottom: margin10),
                       child: Text(
-                        'Take photos',
+                        'Collection',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ))),
               InkWell(
@@ -229,7 +236,7 @@ class ProfileScreen extends BaseScreen {
                   child: Container(
                       margin: EdgeInsets.only(
                           top: margin10, right: margin20, bottom: margin10),
-                      child: Text('See all'))),
+                      child: Text('Create new',style: TextStyle(color: blueColor),))),
             ],
           ),
 
