@@ -67,7 +67,7 @@ class PasswordScreen extends BaseScreen {
                   pushScreen(
                       context,
                       BaseWidget(
-                        screen: Screens.ADDITIONAL,
+                        screen: Screens.IMPLEMENT,
                       ));
                 }
               },

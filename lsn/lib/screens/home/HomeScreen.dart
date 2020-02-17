@@ -22,7 +22,7 @@ class HomeScreen extends BaseScreen {
         screen: Screens.FEED,
       ),
       BaseWidget(
-        screen: Screens.QUESTION,
+        screen: Screens.ADD_TOPIC,
       ),
       BaseWidget(
         screen: Screens.NOTIFICATION,
@@ -51,17 +51,18 @@ class HomeScreen extends BaseScreen {
         _pageController.jumpToPage(index);
       },
       items: <BottomNavyBarItem>[
-        /// Home
+        /// Feed
         BottomNavyBarItem(
-            title: Text('Home'),
-            icon: Icon(Icons.home),
+            title: Text('Feed'),
+            icon: Icon(Icons.dehaze),
             activeColor: Colors.teal,
             inactiveColor: Colors.teal),
 
-        /// Tech news
+
+        /// Add topic
         BottomNavyBarItem(
-            title: Text('Question'),
-            icon: Icon(Icons.question_answer),
+            title: Text('Add topic'),
+            icon: Icon(Icons.edit),
             activeColor: Colors.teal,
             inactiveColor: Colors.teal),
 

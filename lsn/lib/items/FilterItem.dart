@@ -26,7 +26,7 @@ class FilterItem extends BaseItem {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ))),
-            Divider(color: greyColor, height: 1.0)
+            Divider(color: greyColor, height: 0.0)
           ],
         )));
   }

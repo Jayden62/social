@@ -2,11 +2,10 @@ import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/component/InputSearchComponent.dart';
 import 'package:lsn/items/FilterItem.dart';
-import 'package:lsn/items/QuestionItem.dart';
+import 'package:lsn/items/FeedItem.dart';
 
-class QuestionScreen extends BaseScreen {
+class FeedScreen extends BaseScreen {
   String value = 'Flutter';
 
   @override
@@ -19,8 +18,6 @@ class QuestionScreen extends BaseScreen {
     return Column(
       children: <Widget>[
         /// InputSearchComponent
-        InputSearchComponent(),
-
         /// Filter
         _filter(),
 
@@ -32,7 +29,6 @@ class QuestionScreen extends BaseScreen {
 
   Widget _filter() {
     return Container(
-        margin: EdgeInsets.only(top: margin20),
         child: ConfigurableExpansionTile(
             initiallyExpanded: false,
             animatedWidgetFollowingHeader:
@@ -55,50 +51,42 @@ class QuestionScreen extends BaseScreen {
             headerBackgroundColorStart: Colors.brown[300],
             headerBackgroundColorEnd: Colors.brown[300],
             children: [
-              FilterItem(
-                text: 'Flutter',
-                onFilter: (String text) {
-                  setState(() {
-                    value = text;
-                  });
-                },
-              ),
-              FilterItem(
-                text: 'Android',
-                onFilter: (String text) {
-                  setState(() {
-                    value = text;
-                  });
-                },
-              ),
-              FilterItem(
-                text: 'iOS',
-                onFilter: (String text) {
-                  setState(() {
-                    value = text;
-                  });
-                },
-              ),
-            ]));
+          FilterItem(
+            text: 'Flutter',
+            onFilter: (String text) {
+              setState(() {
+                value = text;
+              });
+            },
+          ),
+          FilterItem(
+            text: 'Android',
+            onFilter: (String text) {
+              setState(() {
+                value = text;
+              });
+            },
+          ),
+          FilterItem(
+            text: 'iOS',
+            onFilter: (String text) {
+              setState(() {
+                value = text;
+              });
+            },
+          ),
+        ]));
   }
 
   Widget _questions() {
     return Expanded(
       child: ListView(
         children: <Widget>[
-          QuestionItem(),
+          FeedItem(),
+          FeedItem(),
+          FeedItem(),
+          FeedItem(),
         ],
-      ),
-    );
-  }
-
-  @override
-  Widget onInitFloatingActionButton(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(padding10),
-      child: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
       ),
     );
   }

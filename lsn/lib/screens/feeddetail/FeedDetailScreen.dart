@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
-class BaseQuestionScreen extends BaseScreen {
+class FeedDetailScreen extends BaseScreen {
   @override
   Widget onInitBody(BuildContext context) {
-    return Column();
+    return Container();
   }
 
   @override

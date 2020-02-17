@@ -13,7 +13,7 @@ import 'package:lsn/middle/model/CountryRequest.dart';
 import 'package:lsn/util/DialogUtil.dart';
 import 'package:lsn/util/SnackbarUtil.dart';
 
-class AdditionalScreen extends BaseScreen {
+class ImplementScreen extends BaseScreen {
   var nameController = TextEditingController();
   var dobController = TextEditingController();
   var posController = TextEditingController();

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
-import 'package:lsn/modules/login/AdditionalScreen.dart';
-import 'package:lsn/modules/login/NewPhoneScreen.dart';
-import 'package:lsn/modules/login/VerifyScreen.dart';
-import 'package:lsn/modules/login/PasswordScreen.dart';
-import 'package:lsn/modules/login/PhoneScreen.dart';
-import 'package:lsn/modules/home/HomeScreen.dart';
-import 'package:lsn/modules/home/feed/FeedScreen.dart';
-import 'package:lsn/modules/home/notification/NotificationScreen.dart';
-import 'package:lsn/modules/home/profile/EditProfileScreen.dart';
-import 'package:lsn/modules/home/profile/NewFeatureScreen.dart';
-import 'package:lsn/modules/home/profile/ProfileScreen.dart';
-import 'package:lsn/modules/home/profile/ViewPostScreen.dart';
-import 'package:lsn/modules/home/question/BaseQuestionScreen.dart';
-import 'package:lsn/modules/home/question/QuestionDetailScreen.dart';
-import 'package:lsn/modules/home/question/QuestionScreen.dart';
+import 'package:lsn/screens/addtopic/AddTopicScreen.dart';
+import 'package:lsn/screens/feeddetail/FeedDetailScreen.dart';
+import 'package:lsn/screens/phone/PhoneScreen.dart';
+import 'package:lsn/screens/password/PasswordScreen.dart';
+import 'package:lsn/screens/newphone/NewPhoneScreen.dart';
+import 'package:lsn/screens/verify/VerifyScreen.dart';
+import 'package:lsn/screens/implement/ImplementScreen.dart';
+import 'package:lsn/screens/home/HomeScreen.dart';
+import 'package:lsn/screens/profile/ProfileScreen.dart';
+import 'package:lsn/screens/feed/FeedScreen.dart';
+import 'package:lsn/screens/notification/NotificationScreen.dart';
 
 /// Factory pattern
 class Screens {
@@ -30,8 +26,8 @@ class Screens {
   /// Verify screen
   static const String VERIFY = 'verify';
 
-  /// Additional screen
-  static const String ADDITIONAL = 'additional';
+  /// Implement screen
+  static const String IMPLEMENT = 'implement';
 
   /// Home screen
   static const String HOME = 'home';
@@ -39,14 +35,8 @@ class Screens {
   /// Feed screen
   static const String FEED = 'feed';
 
-  /// Question screen
-  static const String QUESTION = 'question';
-
-  /// Base question screen
-  static const String BASE_QUESTION = 'base question';
-
-  /// Question detail screen
-  static const String QUESTION_DETAIL = 'question detail';
+  /// Feed detail screen
+  static const String FEED_DETAIL = 'feed detail';
 
   /// Profile screen
   static const String PROFILE = 'profile';
@@ -62,6 +52,9 @@ class Screens {
 
   /// Edit profile screen
   static const String EDIT_PROFILE = 'edit profile';
+
+  /// Add topic
+  static const String ADD_TOPIC = 'add topic';
 
   /// Init screen
   State<BaseWidget> initScreen({@required String screen}) {
@@ -79,38 +72,26 @@ class Screens {
       case VERIFY:
         state = VerifyScreen();
         break;
-      case ADDITIONAL:
-        state = AdditionalScreen();
+      case IMPLEMENT:
+        state = ImplementScreen();
         break;
       case HOME:
         state = HomeScreen();
         break;
-      case FEED:
-        state = FeedScreen();
-        break;
       case PROFILE:
         state = ProfileScreen();
         break;
-      case QUESTION:
-        state = QuestionScreen();
+      case FEED:
+        state = FeedScreen();
         break;
-      case BASE_QUESTION:
-        state = BaseQuestionScreen();
-        break;
-      case QUESTION_DETAIL:
-        state = QuestionDetailScreen();
-        break;
-      case VIEW_POST:
-        state = ViewPostScreen();
+      case FEED_DETAIL:
+        state = FeedDetailScreen();
         break;
       case NOTIFICATION:
         state = NotificationScreen();
         break;
-      case NEW_FEATURE:
-        state = NewFeatureScreen();
-        break;
-      case EDIT_PROFILE:
-        state = EditProfileScreen();
+      case ADD_TOPIC:
+        state = AddTopicScreen();
         break;
     }
     return state;

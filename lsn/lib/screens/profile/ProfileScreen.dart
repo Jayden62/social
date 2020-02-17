@@ -53,18 +53,8 @@ class ProfileScreen extends BaseScreen {
                   )),
 
               /// Posts
-              ListView(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                children: <Widget>[
-                  PostItem(),
-                  PostItem(),
-                ],
-              ),
+              _showPosts(),
             ])),
-
-        /// Show posts
-//        _showPosts(),
       ],
     )));
   }
@@ -232,33 +222,13 @@ class ProfileScreen extends BaseScreen {
   }
 
   Widget _showPosts() {
-    return Container(
-      color: whiteColor,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(
-                  top: margin10, left: margin20, bottom: margin10),
-              child: Text(
-                'Most liked pots',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: font16),
-              )),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                Text(
-                  'Most liked pots',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: font16),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
+    return ListView(
+      shrinkWrap: true,
+      physics: ClampingScrollPhysics(),
+      children: <Widget>[
+        PostItem(),
+        PostItem(),
+      ],
     );
   }
 

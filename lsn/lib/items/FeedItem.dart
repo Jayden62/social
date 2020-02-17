@@ -3,10 +3,10 @@ import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/ResponseComponent.dart';
 
-class QuestionItem extends BaseItem {
+class FeedItem extends BaseItem {
   final Function callback;
 
-  QuestionItem({this.callback});
+  FeedItem({this.callback});
 
   @override
   Widget onInitItem(BuildContext context) {
@@ -14,7 +14,7 @@ class QuestionItem extends BaseItem {
         onTap: () {},
         highlightColor: Colors.transparent,
         child: Container(
-          margin: EdgeInsets.only(top: margin20),
+          margin: EdgeInsets.only(top: margin10),
           padding: EdgeInsets.all(padding10),
           color: whiteColor,
           child: Column(
@@ -54,9 +54,19 @@ class QuestionItem extends BaseItem {
           /// Category
           Container(
             margin: EdgeInsets.only(top: margin10),
-            child: Text(
-              'Flutter',
-              style: TextStyle(fontSize: font16, fontWeight: FontWeight.bold),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: Text('Category : '),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: margin10),
+                  child: Text(
+                    'Flutter',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
