@@ -1,14 +1,11 @@
 import 'dart:io';
-
-import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/component/FeatureComponent.dart';
-import 'package:lsn/component/ProfileComponent.dart';
 import 'package:lsn/items/CollectionItem.dart';
+import 'package:lsn/items/PostItem.dart';
 import 'package:lsn/util/DialogUtil.dart';
 
 class ProfileScreen extends BaseScreen {
@@ -38,6 +35,36 @@ class ProfileScreen extends BaseScreen {
 
         /// Show collection
         _showCollection(),
+
+        /// Posts content
+        Container(
+            color: whiteColor,
+            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              /// Most liked post
+
+              Container(
+                  alignment: Alignment.topLeft,
+                  margin: EdgeInsets.only(
+                      top: margin10, left: margin20, bottom: margin10),
+                  child: Text(
+                    'Most liked posts',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: font16),
+                  )),
+
+              /// Posts
+              ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                children: <Widget>[
+                  PostItem(),
+                  PostItem(),
+                ],
+              ),
+            ])),
+
+        /// Show posts
+//        _showPosts(),
       ],
     )));
   }
@@ -204,6 +231,37 @@ class ProfileScreen extends BaseScreen {
     );
   }
 
+  Widget _showPosts() {
+    return Container(
+      color: whiteColor,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+              margin: EdgeInsets.only(
+                  top: margin10, left: margin20, bottom: margin10),
+              child: Text(
+                'Most liked pots',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: font16),
+              )),
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                Text(
+                  'Most liked pots',
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: font16),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _showCollection() {
     return Container(
       margin: EdgeInsets.only(top: margin10),
@@ -222,7 +280,8 @@ class ProfileScreen extends BaseScreen {
                           top: margin10, left: margin20, bottom: margin10),
                       child: Text(
                         'Collection',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: font16),
                       ))),
               InkWell(
                   onTap: () {},
@@ -244,11 +303,6 @@ class ProfileScreen extends BaseScreen {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-//                  Image.network(
-//                    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwlwvk3IDwOXiIQ4SVjpbz2rFmmNo2lbhzwp3JtttqJ_EIZWyo',
-//                    width: 150,
-//                  ),
-
                   CollectionItem(),
                   CollectionItem(),
                   CollectionItem(),
@@ -296,94 +350,6 @@ class ProfileScreen extends BaseScreen {
             ),
           ],
         ));
-  }
-
-  Widget _showFeature() {
-    return Expanded(
-        child: ListView(
-      shrinkWrap: true,
-      children: <Widget>[
-        /// Line
-        Divider(color: greyColor, height: 1.0),
-
-        /// Edit profile
-        FeatureComponent(
-          text: 'Edit profile',
-          icon: Icon(Icons.edit),
-          onTap: () {
-            pushScreen(
-                context,
-                BaseWidget(
-                  screen: Screens.EDIT_PROFILE,
-                ));
-          },
-        ),
-
-        /// New features
-        FeatureComponent(
-          text: 'News features',
-          onTap: () {
-            pushScreen(
-                context,
-                BaseWidget(
-                  screen: Screens.NEW_FEATURE,
-                ));
-          },
-        ),
-      ],
-    ));
-  }
-
-  Widget _showDetail() {
-    return Container(
-        color: whiteColor,
-        margin: EdgeInsets.only(top: margin10),
-        child: ConfigurableExpansionTile(
-            initiallyExpanded: false,
-            animatedWidgetFollowingHeader:
-                Icon(Icons.expand_more, color: whiteColor),
-            headerExpanded: Flexible(
-                child: Container(
-                    padding: EdgeInsets.all(padding10),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Hide detail',
-                      style: TextStyle(color: whiteColor, fontSize: font16),
-                    ))),
-            header: Flexible(
-                child: Container(
-                    padding: EdgeInsets.all(padding10),
-                    alignment: Alignment.center,
-                    child: Text('Show detail',
-                        style:
-                            TextStyle(color: whiteColor, fontSize: font16)))),
-            headerBackgroundColorStart: Colors.teal[200],
-            headerBackgroundColorEnd: Colors.teal[200],
-            children: [
-              /// Phone number
-              ProfileComponent(
-                title: 'Phone',
-                value: '093 693 xxxx',
-              ),
-
-              /// Day of birth
-              ProfileComponent(
-                title: 'Day of birth',
-                value: '1997/02/06',
-              ),
-
-              /// Position
-              ProfileComponent(
-                title: 'Position',
-                value: 'Mobile developer',
-              ),
-
-              /// Country
-              ProfileComponent(
-                title: 'Country',
-                value: 'Viet Nam Country',
-              ),
-            ]));
   }
 
   @override

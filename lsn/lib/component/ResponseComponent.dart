@@ -4,7 +4,7 @@ import 'package:lsn/base/style/BaseStyle.dart';
 class ResponseComponent extends StatefulWidget {
   final Function(String text) onReply;
 
-  ResponseComponent({this.onReply});
+  ResponseComponent({@required this.onReply});
 
   @override
   State<StatefulWidget> createState() {
@@ -26,7 +26,7 @@ class ResponseComponentState extends State<ResponseComponent> {
     return Container(
         height: boxHeight,
         decoration: _commentDecoration,
-        margin: EdgeInsets.all(margin10),
+        margin: EdgeInsets.only(top: margin10),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -57,4 +57,4 @@ class ResponseComponentState extends State<ResponseComponent> {
 
 var _commentDecoration = BoxDecoration(
     color: Colors.grey[300],
-    borderRadius: BorderRadius.all(Radius.circular(radius25)));
+    borderRadius: BorderRadius.all(Radius.circular(radius8)));

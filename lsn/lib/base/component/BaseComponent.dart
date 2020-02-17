@@ -11,5 +11,4 @@ class BaseComponent extends StatefulWidget {
     return Container();
   }
 
-//  Widget onInitComponent(BuildContext context);
 }

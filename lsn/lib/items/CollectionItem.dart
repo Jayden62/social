@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
@@ -15,7 +16,7 @@ class CollectionItem extends BaseItem {
             borderRadius: BorderRadius.all(Radius.circular(radius8)),
             image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwlwvk3IDwOXiIQ4SVjpbz2rFmmNo2lbhzwp3JtttqJ_EIZWyo'))),
         child: Container(
           margin: EdgeInsets.only(top: margin5),
