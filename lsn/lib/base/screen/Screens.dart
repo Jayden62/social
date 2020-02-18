@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
+import 'package:lsn/screens/addtopic/AddTopicScreen.dart';
 import 'package:lsn/screens/feeddetail/FeedDetailScreen.dart';
 import 'package:lsn/screens/phone/PhoneScreen.dart';
 import 'package:lsn/screens/password/PasswordScreen.dart';
@@ -52,6 +53,9 @@ class Screens {
   /// Edit profile screen
   static const String EDIT_PROFILE = 'edit profile';
 
+  /// Add topic screen
+  static const String ADD_TOPIC = 'add topic';
+
   /// Init screen
   State<BaseWidget> initScreen({@required String screen}) {
     State<BaseWidget> state;
@@ -85,6 +89,9 @@ class Screens {
         break;
       case NOTIFICATION:
         state = NotificationScreen();
+        break;
+      case ADD_TOPIC:
+        state = AddTopicScreen();
         break;
     }
     return state;

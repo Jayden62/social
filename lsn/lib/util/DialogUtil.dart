@@ -1,8 +1,6 @@
-import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
-import 'package:lsn/component/IssueTypeComponent.dart';
 
 class DialogUtil {
   /// Single tong
@@ -166,7 +164,9 @@ class DialogUtil {
                     width: width150,
                     margin: EdgeInsets.all(margin20),
                     enable: true,
-                    onPress: () {popDialog(context);},
+                    onPress: () {
+                      popDialog(context);
+                    },
                   )
                 ],
               ),

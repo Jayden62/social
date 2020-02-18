@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';

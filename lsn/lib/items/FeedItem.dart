@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/ReplyComponent.dart';
+import 'package:intl/intl.dart';
 
 class FeedItem extends BaseItem {
   final Function callback;
@@ -134,7 +135,8 @@ class FeedItem extends BaseItem {
 
                         /// Date submitted
                         Container(
-                          child: Text(DateTime.now().toUtc().toString()),
+                          child:
+                              Text(_parseDateToString(DateTime.now().toUtc())),
                         ),
                       ],
                     )),
@@ -150,5 +152,14 @@ class FeedItem extends BaseItem {
             ),
           ],
         ));
+  }
+
+  String _parseDateToString(DateTime dateTime) {
+    if (dateTime == null) {
+      return '';
+    }
+
+    DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
+    return formatter.format(dateTime);
   }
 }

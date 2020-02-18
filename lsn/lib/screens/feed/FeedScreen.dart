@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
+import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/AddTopicComponent.dart';
 import 'package:lsn/items/FeedItem.dart';
@@ -72,6 +73,14 @@ class FeedScreen extends BaseScreen {
         feedBack: () {
           /// Show feed back
           DialogUtil.instance.showFeedbackDialog(context);
+        },
+        addTopic: () {
+          /// Navigate add topic screen
+          pushScreen(
+              context,
+              BaseWidget(
+                screen: Screens.ADD_TOPIC,
+              ));
         },
       );
     } else {

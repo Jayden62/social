@@ -72,12 +72,5 @@ class PostItem extends BaseItem {
     );
   }
 
-  String _parseDateToString(DateTime dateTime) {
-    if (dateTime == null) {
-      return '';
-    }
 
-    DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm');
-    return formatter.format(dateTime);
-  }
 }

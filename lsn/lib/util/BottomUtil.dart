@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/api/result/Option.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/component/CommonButtonComponent.dart';
-import 'package:lsn/component/InputTextComponent.dart';
+
 import 'package:lsn/items/OptionItem.dart';
 
 class BottomUtil {
