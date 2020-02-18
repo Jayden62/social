@@ -136,7 +136,7 @@ class ProfileScreen extends BaseScreen {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        decoration: BoxDecoration(color: Colors.teal[200]),
+        decoration: BoxDecoration(color: Colors.teal[100]),
         height: height150,
       ),
     );

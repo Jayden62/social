@@ -2,6 +2,7 @@ import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
+import 'package:lsn/component/AddTopicComponent.dart';
 import 'package:lsn/items/FilterItem.dart';
 import 'package:lsn/items/FeedItem.dart';
 
@@ -17,6 +18,9 @@ class FeedScreen extends BaseScreen {
   Widget onInitBody(BuildContext context) {
     return Column(
       children: <Widget>[
+        /// Add topic
+        AddTopicComponent(),
+
         /// Filter
         _filter(),
 

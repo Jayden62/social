@@ -12,7 +12,7 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
   static const int NOTIFICATION_PAGE = 1;
   static const int PROFILE_PAGE = 2;
 
-  Color _feedColor = Colors.teal;
+  Color _feedColor = primaryColor;
   Color _notificationColor;
   Color _profileColor;
 
@@ -55,13 +55,13 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
         decoration: _tabDecoration,
         child: TabBar(
           controller: _tabController,
-          indicatorColor: Colors.teal,
+          indicatorColor: primaryColor,
           indicator: _tabIndicator,
           onTap: (int index) {
             /// Feed page
             if (FEED_PAGE == index) {
               setState(() {
-                _feedColor = Colors.teal;
+                _feedColor = primaryColor;
                 _notificationColor = Colors.grey;
                 _profileColor = Colors.grey;
               });
@@ -72,7 +72,7 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
             if (NOTIFICATION_PAGE == index) {
               setState(() {
                 _feedColor = Colors.grey;
-                _notificationColor = Colors.teal;
+                _notificationColor = primaryColor;
                 _profileColor = Colors.grey;
               });
               _pageController.jumpToPage(NOTIFICATION_PAGE);
@@ -83,7 +83,7 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
               setState(() {
                 _feedColor = Colors.grey;
                 _notificationColor = Colors.grey;
-                _profileColor = Colors.teal;
+                _profileColor = primaryColor;
               });
               _pageController.jumpToPage(PROFILE_PAGE);
             }
@@ -129,7 +129,7 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
 }
 
 var _tabIndicator = UnderlineTabIndicator(
-    borderSide: BorderSide(color: Colors.teal, width: 2.0),
+    borderSide: BorderSide(color: primaryColor, width: 2.0),
     insets: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 46.0));
 var _tabDecoration =
     BoxDecoration(color: Colors.white, boxShadow: [_tabBoxShadow]);
