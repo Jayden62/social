@@ -9,32 +9,43 @@ class AddTopicComponent extends StatefulWidget {
 class _AddTopicComponentState extends State<AddTopicComponent> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: margin10, left: margin10, right: margin10),
+    return Card(
+      margin: EdgeInsets.all(0.0),
+      elevation: elevation2,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(0.0))),
       child: Column(
         children: <Widget>[
           /// Feed back
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Hoard dumple',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent,
-                    fontSize: font22),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Icon(Icons.feedback, size: size20, color: Colors.grey),
-              ),
-            ],
-          ),
+          Container(
+              margin: EdgeInsets.only(
+                  top: margin10, left: margin10, right: margin10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Hoard dumple',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent,
+                        fontSize: font22),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child:
+                        Icon(Icons.feedback, size: size20, color: Colors.grey),
+                  ),
+                ],
+              )),
 
           /// Add topic
 
           Container(
-              margin: EdgeInsets.only(top: margin5),
+              margin: EdgeInsets.only(
+                  top: margin5,
+                  left: margin10,
+                  right: margin10,
+                  bottom: margin10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -64,7 +75,11 @@ class _AddTopicComponentState extends State<AddTopicComponent> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      child: Icon(Icons.create,size: size20,color: primaryColor,),
+                      child: Icon(
+                        Icons.create,
+                        size: size20,
+                        color: primaryColor,
+                      ),
                     ),
                   )
                 ],
