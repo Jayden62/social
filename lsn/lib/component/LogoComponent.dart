@@ -13,7 +13,7 @@ class _LogoComponentState extends State<LogoComponent> {
         constraints: BoxConstraints.expand(height: height200),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Colors.teal[200],
+            color: Colors.teal[100],
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(radius50),
                 bottomRight: Radius.circular(radius50))),

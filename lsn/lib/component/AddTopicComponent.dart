@@ -64,7 +64,7 @@ class _AddTopicComponentState extends State<AddTopicComponent> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      child: Icon(Icons.create),
+                      child: Icon(Icons.create,size: size20,color: primaryColor,),
                     ),
                   )
                 ],

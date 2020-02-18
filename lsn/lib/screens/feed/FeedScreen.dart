@@ -22,7 +22,7 @@ class FeedScreen extends BaseScreen {
         AddTopicComponent(),
 
         /// Filter
-        _filter(),
+//        _filter(),
 
         /// Questions
         _questions(),

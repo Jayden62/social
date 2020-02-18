@@ -44,7 +44,7 @@ var _highlightStyle = TextStyle(fontSize: font16, color: greyColor);
 var _disableStyle = TextStyle(fontSize: font16, color: whiteColor);
 
 var _defaultDecoration = BoxDecoration(
-    color: Colors.teal[300],
+    color: primaryColor,
     borderRadius: BorderRadius.all(Radius.circular(radius25)));
 var _disableDecoration = BoxDecoration(
     color: greyColor,
