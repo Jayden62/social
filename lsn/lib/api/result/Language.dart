@@ -1,12 +1,12 @@
-class LanguageRequest {
+class Language {
   String countryName;
   String countryCode;
   String flag;
   String postCode;
 
-  LanguageRequest({this.countryName, this.countryCode, this.flag,this.postCode});
+  Language({this.countryName, this.countryCode, this.flag,this.postCode});
 
-  LanguageRequest.fromJson(Map<String, dynamic> json) {
+  Language.fromJson(Map<String, dynamic> json) {
     countryName = json['country_name'];
     countryCode = json['country_code'];
     flag = json['flag'];

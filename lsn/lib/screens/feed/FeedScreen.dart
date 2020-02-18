@@ -1,17 +1,56 @@
 import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/AddTopicComponent.dart';
-import 'package:lsn/items/FilterItem.dart';
+import 'package:lsn/items/OptionItem.dart';
 import 'package:lsn/items/FeedItem.dart';
+import 'package:lsn/util/BottomUtil.dart';
 
 class FeedScreen extends BaseScreen {
   String value = 'Flutter';
+  bool _show = true;
+  ScrollController _scrollController = ScrollController();
+  bool isScrollingDown = false;
 
   @override
   void initState() {
     super.initState();
+
+    /// Show or hide topic when start scrolling list.
+    _scrollTopic();
+  }
+
+  void _scrollTopic() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isScrollingDown) {
+          isScrollingDown = false;
+          _showTopic();
+        }
+      }
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!isScrollingDown) {
+          isScrollingDown = true;
+          _hideTopic();
+        }
+      }
+    });
+  }
+
+  _showTopic() {
+    setState(() {
+      _show = true;
+    });
+  }
+
+  _hideTopic() {
+    setState(() {
+      _show = false;
+    });
   }
 
   @override
@@ -19,10 +58,7 @@ class FeedScreen extends BaseScreen {
     return Column(
       children: <Widget>[
         /// Add topic
-        AddTopicComponent(),
-
-        /// Filter
-//        _filter(),
+        _addTopic(),
 
         /// Questions
         _questions(),
@@ -30,64 +66,27 @@ class FeedScreen extends BaseScreen {
     );
   }
 
-  Widget _filter() {
-    return Container(
-        child: ConfigurableExpansionTile(
-            initiallyExpanded: false,
-            animatedWidgetFollowingHeader:
-                Icon(Icons.expand_more, color: whiteColor),
-            headerExpanded: Flexible(
-                child: Container(
-                    padding: EdgeInsets.all(padding10),
-                    alignment: Alignment.center,
-                    child: Text(
-                      value,
-                      style: TextStyle(color: whiteColor, fontSize: font16),
-                    ))),
-            header: Flexible(
-                child: Container(
-                    padding: EdgeInsets.all(padding10),
-                    alignment: Alignment.center,
-                    child: Text(value,
-                        style:
-                            TextStyle(color: whiteColor, fontSize: font16)))),
-            headerBackgroundColorStart: Colors.brown[300],
-            headerBackgroundColorEnd: Colors.brown[300],
-            children: [
-          FilterItem(
-            text: 'Flutter',
-            onFilter: (String text) {
-              setState(() {
-                value = text;
-              });
-            },
-          ),
-          FilterItem(
-            text: 'Android',
-            onFilter: (String text) {
-              setState(() {
-                value = text;
-              });
-            },
-          ),
-          FilterItem(
-            text: 'iOS',
-            onFilter: (String text) {
-              setState(() {
-                value = text;
-              });
-            },
-          ),
-        ]));
+  Widget _addTopic() {
+    Widget view;
+    if (_show) {
+      print('_show $_show');
+      view = AddTopicComponent();
+    } else {
+      print('_show $_show');
+      view = Container(height: height0);
+    }
+    return view;
   }
 
   Widget _questions() {
     return Expanded(
       child: ListView(
+        controller: _scrollController,
         children: <Widget>[
           FeedItem(
             moreOption: () {
               /// Show bottom more options
+              BottomUtil.instance.showMoreOptions(context);
             },
           ),
           FeedItem(),

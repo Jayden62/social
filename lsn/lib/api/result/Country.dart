@@ -1,10 +1,10 @@
-class CountryRequest {
+class Country {
   String name;
   String code;
 
-  CountryRequest({this.name, this.code});
+  Country({this.name, this.code});
 
-  CountryRequest.fromJson(Map<String, dynamic> json) {
+  Country.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     code = json['code'];
   }

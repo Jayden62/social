@@ -3,13 +3,13 @@ import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
-import 'package:lsn/middle/model/BaseCountryRequest.dart';
+import 'package:lsn/api/result/BaseCountry.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyScreen extends BaseScreen {
   bool isEnable = false;
   String _smsCode = '';
-  BaseCountryRequest data;
+  BaseCountry data;
   String _phoneValue;
 
   @override

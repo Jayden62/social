@@ -183,7 +183,7 @@ class ProfileScreen extends BaseScreen {
       child: Align(
         child: InkWell(
             onTap: () {
-              DialogUtil().showPhotoDialog(context,
+              DialogUtil.instance.showPhotoDialog(context,
 
                   /// View avatar
                   onView: () {},

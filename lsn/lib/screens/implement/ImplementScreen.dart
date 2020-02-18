@@ -9,7 +9,7 @@ import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/component/DescriptionComponent.dart';
 import 'package:lsn/component/InputSelectComponent.dart';
 import 'package:lsn/component/InputTextComponent.dart';
-import 'package:lsn/middle/model/CountryRequest.dart';
+import 'package:lsn/api/result/Country.dart';
 import 'package:lsn/util/DialogUtil.dart';
 import 'package:lsn/util/SnackbarUtil.dart';
 
@@ -22,7 +22,7 @@ class ImplementScreen extends BaseScreen {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<CountryRequest> countries = List();
+  List<Country> countries = List();
 
   DateTime selectedDate = DateTime.now();
 
@@ -48,7 +48,7 @@ class ImplementScreen extends BaseScreen {
         await rootBundle.loadString('assets/files/country.json');
     final provinceList = json.decode(jsonProvince);
     for (var item in provinceList) {
-      CountryRequest value = CountryRequest.fromJson(item);
+      Country value = Country.fromJson(item);
       countries.add(value);
     }
   }
@@ -197,7 +197,7 @@ class ImplementScreen extends BaseScreen {
   Widget _avatar() {
     return InkWell(
       onTap: () {
-        DialogUtil().showPhotoDialog(context);
+        DialogUtil.instance.showPhotoDialog(context);
       },
       child: Container(
         height: height100,

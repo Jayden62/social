@@ -1,11 +1,14 @@
-import 'dart:io';
-
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
 class DialogUtil {
+  /// Single tong
+  static final DialogUtil singleton = DialogUtil._internal();
+
+  DialogUtil._internal();
+
+  static DialogUtil get instance => singleton;
+
   /// Dismiss dialog
   static void popDialog(BuildContext context) {
     Navigator.pop(context);
@@ -100,6 +103,4 @@ class DialogUtil {
           );
         });
   }
-
-
 }

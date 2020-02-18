@@ -9,15 +9,14 @@ import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/BackComponent.dart';
 import 'package:lsn/component/CommonButtonComponent.dart';
-import 'package:lsn/middle/model/BaseCountryRequest.dart';
-import 'package:lsn/util/DialogUtil.dart';
+import 'package:lsn/api/result/BaseCountry.dart';
 import 'package:lsn/util/SnackbarUtil.dart';
 
 class NewPhoneScreen extends BaseScreen {
   bool isEnable = false;
   var phoneNumController = TextEditingController();
   Country _country;
-  BaseCountryRequest baseCountryRequest;
+  BaseCountry baseCountryRequest;
   String _phoneValue;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String _verificationId = '';
@@ -99,13 +98,13 @@ class NewPhoneScreen extends BaseScreen {
             enable: isEnable,
             onPress: () async {
               if (_country == null) {
-                baseCountryRequest = BaseCountryRequest(
+                baseCountryRequest = BaseCountry(
                     phoneCode: 'VN',
                     phoneNumber: phoneNumController.text,
                     phoneIso: '+84',
                     phoneCountryName: 'VietNam');
               } else {
-                baseCountryRequest = BaseCountryRequest(
+                baseCountryRequest = BaseCountry(
                     phoneCode: _country.phoneCode,
                     phoneIso: _country.isoCode,
                     phoneNumber: phoneNumController.text,

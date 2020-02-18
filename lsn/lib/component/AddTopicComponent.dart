@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
 class AddTopicComponent extends StatefulWidget {
+  final Function feedBack;
+  final Function addTopic;
+
+  AddTopicComponent({this.feedBack, this.addTopic});
+
   @override
   State<StatefulWidget> createState() => _AddTopicComponentState();
 }
@@ -31,7 +36,7 @@ class _AddTopicComponentState extends State<AddTopicComponent> {
                         fontSize: font22),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () => widget.feedBack(),
                     child:
                         Icon(Icons.feedback, size: size20, color: Colors.grey),
                   ),
@@ -73,7 +78,7 @@ class _AddTopicComponentState extends State<AddTopicComponent> {
 
                   /// Create
                   InkWell(
-                    onTap: () {},
+                    onTap: () => widget.addTopic(),
                     child: Container(
                       child: Icon(
                         Icons.create,

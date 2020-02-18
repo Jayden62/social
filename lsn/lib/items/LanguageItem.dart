@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/middle/model/LanguageRequest.dart';
+import 'package:lsn/api/result/Language.dart';
 
 class LanguageItem extends BaseItem {
-  final LanguageRequest item;
-  final Function(LanguageRequest item) callback;
+  final Language item;
+  final Function(Language item) callback;
 
   LanguageItem(this.item, {this.callback});
 

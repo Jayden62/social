@@ -6,7 +6,7 @@ import 'package:lsn/component/CommonButtonComponent.dart';
 import 'package:lsn/component/InputSelectComponent.dart';
 import 'package:lsn/component/LogoComponent.dart';
 import 'package:lsn/items/LanguageItem.dart';
-import 'package:lsn/middle/model/LanguageRequest.dart';
+import 'package:lsn/api/result/Language.dart';
 
 class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
@@ -123,12 +123,12 @@ class PhoneScreen extends BaseScreen {
           height: height200,
           child: ListView(
             children: <Widget>[
-              LanguageItem(LanguageRequest(
+              LanguageItem(Language(
                   countryName: 'English',
                   countryCode: 'en',
                   flag: 'assets/images/usa_flag.png',
                   postCode: '+1191')),
-              LanguageItem(LanguageRequest(
+              LanguageItem(Language(
                   countryName: 'Vietnamese',
                   countryCode: 'vi',
                   flag: 'assets/images/vietnam_flag.png',
