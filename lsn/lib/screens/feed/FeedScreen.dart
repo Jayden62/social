@@ -17,7 +17,6 @@ class FeedScreen extends BaseScreen {
   Widget onInitBody(BuildContext context) {
     return Column(
       children: <Widget>[
-        /// InputSearchComponent
         /// Filter
         _filter(),
 
@@ -82,7 +81,11 @@ class FeedScreen extends BaseScreen {
     return Expanded(
       child: ListView(
         children: <Widget>[
-          FeedItem(),
+          FeedItem(
+            moreOption: () {
+              /// Show bottom more options
+            },
+          ),
           FeedItem(),
           FeedItem(),
           FeedItem(),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
@@ -5,8 +6,9 @@ import 'package:lsn/component/ReplyComponent.dart';
 
 class FeedItem extends BaseItem {
   final Function callback;
+  final Function moreOption;
 
-  FeedItem({this.callback});
+  FeedItem({this.callback, this.moreOption});
 
   @override
   Widget onInitItem(BuildContext context) {
@@ -38,16 +40,26 @@ class FeedItem extends BaseItem {
 
   Widget _question() {
     return Container(
-      margin: EdgeInsets.only(top: margin10, left: margin10, right: margin10),
+      margin: EdgeInsets.only(top: margin10, right: margin10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          /// Question
+          /// Post
           Container(
             child: Text(
                 'Flutter is cross platform build both Android and iOS, in 2010 it will be the best frame work fot mobile development ? '),
           ),
+
+          /// Photo
+          Container(
+              height: height150,
+              margin: EdgeInsets.only(top: margin10),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwlwvk3IDwOXiIQ4SVjpbz2rFmmNo2lbhzwp3JtttqJ_EIZWyo')))),
 
           /// Category
           Container(
@@ -74,7 +86,7 @@ class FeedItem extends BaseItem {
 
   Widget _user() {
     return Container(
-        margin: EdgeInsets.only(top: margin10, left: margin10, right: margin10),
+        margin: EdgeInsets.only(top: margin10, right: margin10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,22 +103,35 @@ class FeedItem extends BaseItem {
                       shape: BoxShape.circle,
                       border: Border.all(width: widthAHalf, color: greyColor),
                       image: DecorationImage(
-                        image: AssetImage(
-                            'assets/images/admin.jpg'),
+                        image: AssetImage('assets/images/admin.jpg'),
                       )),
                 ),
 
-                /// Name
                 Container(
-                  margin: EdgeInsets.only(left: margin10),
-                  child: Text('Name'),
-                ),
+                    margin: EdgeInsets.only(left: margin10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        /// Name
+                        Text('Name'),
+
+                        /// Date submitted
+                        Container(
+                          child: Text(DateTime.now().toUtc().toString()),
+                        ),
+                      ],
+                    )),
               ],
             ),
 
-            ///Date submitted
-            Container(
-              child: Text('2020-2-06 16:44:22'),
+            /// More options
+            InkWell(
+              onTap: () {
+                moreOption();
+              },
+              child: Container(
+                child: Icon(Icons.more_horiz),
+              ),
             ),
           ],
         ));

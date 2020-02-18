@@ -129,9 +129,8 @@ class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
 }
 
 var _tabIndicator = UnderlineTabIndicator(
-  borderSide: BorderSide(color: Colors.teal, width: 2.0),
-  insets: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 46.0),
-);
+    borderSide: BorderSide(color: Colors.teal, width: 2.0),
+    insets: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 46.0));
 var _tabDecoration =
     BoxDecoration(color: Colors.white, boxShadow: [_tabBoxShadow]);
 var _tabBoxShadow =
