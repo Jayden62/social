@@ -170,8 +170,11 @@ class NewPhoneScreen extends BaseScreen {
   }
 
   _smsCodeSent(String verificationId, List<int> code) {
+
+
     // set the verification code so that we can use it to log the user in
     _verificationId = verificationId;
+    hideLoadingDialog(context);
 
     pushScreen(
         context,
@@ -182,6 +185,7 @@ class NewPhoneScreen extends BaseScreen {
   }
 
   _verificationFailed(AuthException authException, BuildContext context) {
+    hideLoadingDialog(context);
     /// Show snack bar
     SnackBarUtil().showSnackBar(
         scaffoldKey: _scaffoldKey,
@@ -189,6 +193,7 @@ class NewPhoneScreen extends BaseScreen {
   }
 
   _codeAutoRetrievalTimeout(String verificationId) {
+    hideLoadingDialog(context);
     _verificationId = verificationId;
     setState(() {
       showResend = true;
@@ -197,6 +202,7 @@ class NewPhoneScreen extends BaseScreen {
   }
 
   _verifyPhoneNumber(BuildContext context) async {
+    showLoadingDialog(context);
     await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: _phoneValue,
         timeout: Duration(seconds: 5),

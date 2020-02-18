@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +8,7 @@ import 'package:home_indicator/home_indicator.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/util/LocalizationsDelegateUtil.dart';
+import 'package:flutter/rendering.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -118,7 +117,7 @@ class MainState extends State<MainScreen> {
         home: Scaffold(
           key: _scaffoldKey,
           body: BaseWidget(screen: Screens.HOME),
-//          body: DemoPage(),
+//          body: HomePage(),
         ));
   }
 }

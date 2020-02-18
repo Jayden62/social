@@ -1,13 +1,26 @@
 import 'package:badges/badges.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/screen/Screens.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
-class HomeScreen extends BaseScreen {
+class HomeScreen extends BaseScreen with SingleTickerProviderStateMixin {
   var _pageController = PageController();
-  int _currentIndex = 0;
+  TabController _tabController;
+
+  static const int FEED_PAGE = 0;
+  static const int NOTIFICATION_PAGE = 1;
+  static const int PROFILE_PAGE = 2;
+
+  Color _feedColor = Colors.teal;
+  Color _notificationColor;
+  Color _profileColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
 
   @override
   void dispose() {
@@ -22,9 +35,6 @@ class HomeScreen extends BaseScreen {
         screen: Screens.FEED,
       ),
       BaseWidget(
-        screen: Screens.ADD_TOPIC,
-      ),
-      BaseWidget(
         screen: Screens.NOTIFICATION,
       ),
       BaseWidget(
@@ -35,56 +45,75 @@ class HomeScreen extends BaseScreen {
     return PageView(
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
-      onPageChanged: (index) {
-        setState(() => _currentIndex = index);
-      },
       children: pages,
     );
   }
 
   @override
   Widget onInitBottomNavigationBar(BuildContext context) {
-    return BottomNavyBar(
-      selectedIndex: _currentIndex,
-      onItemSelected: (index) {
-        setState(() => _currentIndex = index);
-        _pageController.jumpToPage(index);
-      },
-      items: <BottomNavyBarItem>[
-        /// Feed
-        BottomNavyBarItem(
-            title: Text('Feed'),
-            icon: Icon(Icons.dehaze),
-            activeColor: Colors.teal,
-            inactiveColor: Colors.teal),
+    return Container(
+        decoration: _tabDecoration,
+        child: TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.teal,
+          indicator: _tabIndicator,
+          onTap: (int index) {
+            /// Feed page
+            if (FEED_PAGE == index) {
+              setState(() {
+                _feedColor = Colors.teal;
+                _notificationColor = Colors.grey;
+                _profileColor = Colors.grey;
+              });
+              _pageController.jumpToPage(FEED_PAGE);
+            }
 
+            /// Notification page
+            if (NOTIFICATION_PAGE == index) {
+              setState(() {
+                _feedColor = Colors.grey;
+                _notificationColor = Colors.teal;
+                _profileColor = Colors.grey;
+              });
+              _pageController.jumpToPage(NOTIFICATION_PAGE);
+            }
 
-        /// Add topic
-        BottomNavyBarItem(
-            title: Text('Add topic'),
-            icon: Icon(Icons.edit),
-            activeColor: Colors.teal,
-            inactiveColor: Colors.teal),
-
-        /// Notification
-        BottomNavyBarItem(
-            title: Text('Notification'),
-            icon: Badge(
-                badgeContent: Text('0',
-                    style: TextStyle(fontSize: font10, color: whiteColor)),
-                padding: EdgeInsets.all(padding3),
-                child: Container(child: Icon(Icons.notifications))),
-            activeColor: Colors.teal,
-            inactiveColor: Colors.teal),
-
-        /// Profile
-        BottomNavyBarItem(
-            title: Text('Profile'),
-            icon: Icon(Icons.account_circle),
-            activeColor: Colors.teal,
-            inactiveColor: Colors.teal),
-      ],
-    );
+            /// Profile page
+            if (PROFILE_PAGE == index) {
+              setState(() {
+                _feedColor = Colors.grey;
+                _notificationColor = Colors.grey;
+                _profileColor = Colors.teal;
+              });
+              _pageController.jumpToPage(PROFILE_PAGE);
+            }
+          },
+          tabs: [
+            Tab(
+              icon: Icon(
+                Icons.public,
+                color: _feedColor,
+              ),
+            ),
+            Tab(
+              icon: Badge(
+                  badgeContent: Text('0',
+                      style: TextStyle(fontSize: font10, color: whiteColor)),
+                  padding: EdgeInsets.all(padding3),
+                  child: Container(
+                      child: Icon(
+                    Icons.notifications,
+                    color: _notificationColor,
+                  ))),
+            ),
+            Tab(
+              icon: Icon(
+                Icons.person,
+                color: _profileColor,
+              ),
+            )
+          ],
+        ));
   }
 
   @override
@@ -98,3 +127,12 @@ class HomeScreen extends BaseScreen {
         ));
   }
 }
+
+var _tabIndicator = UnderlineTabIndicator(
+  borderSide: BorderSide(color: Colors.teal, width: 2.0),
+  insets: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 46.0),
+);
+var _tabDecoration =
+    BoxDecoration(color: Colors.white, boxShadow: [_tabBoxShadow]);
+var _tabBoxShadow =
+    BoxShadow(color: Colors.black, offset: Offset(0.0, 5.0), blurRadius: 5.0);

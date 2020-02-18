@@ -31,7 +31,7 @@ class BaseLoadingDialog {
                 Container(
                   margin: EdgeInsets.only(left: margin10),
                   child: Text(
-                   'Loading data...',
+                   'Please, waiting...',
                     style: loadingStyle,
                   ),
                 ),

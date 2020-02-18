@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/item/BaseItem.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
-import 'package:lsn/component/ResponseComponent.dart';
+import 'package:lsn/component/ReplyComponent.dart';
 
 class FeedItem extends BaseItem {
   final Function callback;
@@ -25,12 +25,10 @@ class FeedItem extends BaseItem {
               /// Question
               _question(),
 
-              /// Comment
-              ResponseComponent(
+              /// Reply
+              ReplyComponent(
                 onReply: (String text) {
-                  if (text.isEmpty) {
-                    print('is Empty.');
-                  }
+                  print(text);
                 },
               ),
             ],
@@ -93,8 +91,8 @@ class FeedItem extends BaseItem {
                       shape: BoxShape.circle,
                       border: Border.all(width: widthAHalf, color: greyColor),
                       image: DecorationImage(
-                        image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF-lDV_1qpLFVCmvx9McS9NgbNb8xqL8iBuPORKjLWMvw2Q-AU&s'),
+                        image: AssetImage(
+                            'assets/images/admin.jpg'),
                       )),
                 ),
 

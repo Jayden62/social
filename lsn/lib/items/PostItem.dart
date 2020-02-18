@@ -3,7 +3,7 @@ import 'package:lsn/base/item/BaseItem.dart';
 import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:intl/intl.dart';
-import 'package:lsn/component/ResponseComponent.dart';
+import 'package:lsn/component/ReplyComponent.dart';
 
 class PostItem extends BaseItem {
   @override
@@ -14,7 +14,7 @@ class PostItem extends BaseItem {
         children: <Widget>[
           /// Photo
           Container(
-            height: height200,
+            height: height150,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(radius8)),
                 image: DecorationImage(
@@ -62,7 +62,7 @@ class PostItem extends BaseItem {
 
 
           /// Response
-          ResponseComponent(
+          ReplyComponent(
             onReply: (String text) {
               print(text);
             },

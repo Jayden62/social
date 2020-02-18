@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 
-class ResponseComponent extends StatefulWidget {
+class ReplyComponent extends StatefulWidget {
   final Function(String text) onReply;
 
-  ResponseComponent({@required this.onReply});
+  ReplyComponent({@required this.onReply});
 
   @override
   State<StatefulWidget> createState() {
-    return ResponseComponentState();
+    return ReplyComponentState();
   }
 }
 
-class ResponseComponentState extends State<ResponseComponent> {
+class ReplyComponentState extends State<ReplyComponent> {
   var resController = TextEditingController();
 
   @override
