@@ -1,12 +1,11 @@
-import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lsn/base/screen/BaseScreen.dart';
 import 'package:lsn/base/style/BaseStyle.dart';
 import 'package:lsn/component/AddTopicComponent.dart';
-import 'package:lsn/items/OptionItem.dart';
 import 'package:lsn/items/FeedItem.dart';
 import 'package:lsn/util/BottomUtil.dart';
+import 'package:lsn/util/DialogUtil.dart';
 
 class FeedScreen extends BaseScreen {
   String value = 'Flutter';
@@ -69,10 +68,13 @@ class FeedScreen extends BaseScreen {
   Widget _addTopic() {
     Widget view;
     if (_show) {
-      print('_show $_show');
-      view = AddTopicComponent();
+      view = AddTopicComponent(
+        feedBack: () {
+          /// Show feed back
+          DialogUtil.instance.showFeedbackDialog(context);
+        },
+      );
     } else {
-      print('_show $_show');
       view = Container(height: height0);
     }
     return view;

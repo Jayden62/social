@@ -7,8 +7,9 @@ import 'package:lsn/component/ReplyComponent.dart';
 class FeedItem extends BaseItem {
   final Function callback;
   final Function moreOption;
+  final Function viewComment;
 
-  FeedItem({this.callback, this.moreOption});
+  FeedItem({this.callback, this.moreOption, this.viewComment});
 
   @override
   Widget onInitItem(BuildContext context) {
@@ -65,17 +66,33 @@ class FeedItem extends BaseItem {
           Container(
             margin: EdgeInsets.only(top: margin10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  child: Text('Category : '),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text('Category : '),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: margin10),
+                      child: Text(
+                        'Flutter',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: margin10),
-                  child: Text(
-                    'Flutter',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                InkWell(
+                    onTap: () => viewComment(),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                            margin: EdgeInsets.only(right: margin3),
+                            child:
+                                Text('4', style: TextStyle(color: grayColor))),
+                        Icon(Icons.chat_bubble, color: grayColor, size: size16),
+                      ],
+                    )),
               ],
             ),
           ),
@@ -126,9 +143,7 @@ class FeedItem extends BaseItem {
 
             /// More options
             InkWell(
-              onTap: () {
-                moreOption();
-              },
+              onTap: () => moreOption(),
               child: Container(
                 child: Icon(Icons.more_horiz),
               ),

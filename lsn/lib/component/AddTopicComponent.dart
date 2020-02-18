@@ -18,7 +18,9 @@ class _AddTopicComponentState extends State<AddTopicComponent> {
       margin: EdgeInsets.all(0.0),
       elevation: elevation2,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(0.0))),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(radius15),
+              bottomRight: Radius.circular(radius15))),
       child: Column(
         children: <Widget>[
           /// Feed back

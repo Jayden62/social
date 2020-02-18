@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lsn/api/result/Option.dart';
+import 'package:lsn/base/style/BaseStyle.dart';
+import 'package:lsn/component/CommonButtonComponent.dart';
+import 'package:lsn/component/InputTextComponent.dart';
 import 'package:lsn/items/OptionItem.dart';
 
 class BottomUtil {
@@ -15,11 +18,15 @@ class BottomUtil {
     Navigator.pop(context);
   }
 
-  /// Show bottom sheet
+  /// Show more options
   void showMoreOptions(BuildContext context) {
     List<Option> options = Option().addData();
     showModalBottomSheet(
         context: context,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(radius5),
+                topRight: Radius.circular(radius5))),
         builder: (BuildContext bc) {
           return Column(
             mainAxisSize: MainAxisSize.min,
