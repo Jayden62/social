@@ -12,7 +12,6 @@ class PhoneScreen extends BaseScreen {
   var phoneController = TextEditingController();
   var languageController = TextEditingController();
   Map<String, bool> mapLanguage = Map();
-
   bool isEnable = false;
 
   @override
@@ -31,6 +30,7 @@ class PhoneScreen extends BaseScreen {
 
   @override
   Widget onInitBody(BuildContext context) {
+    print('rebuild phone.');
     return Column(
       children: <Widget>[
         /// LogoComponent

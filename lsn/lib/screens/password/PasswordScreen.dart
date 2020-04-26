@@ -27,6 +27,8 @@ class PasswordScreen extends BaseScreen {
 
   @override
   Widget onInitBody(BuildContext context) {
+    print('rebuild pass word.');
+
     return Column(
       children: <Widget>[
         /// LogoComponent
